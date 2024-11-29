@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${outfitFont.className} bg-secondary-900 font-light text-white antialiased`}
       >
-        <main className="grid min-h-screen place-items-center">{children}</main>
+        {children}
       </body>
     </html>
   );
