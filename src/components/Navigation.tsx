@@ -2,45 +2,48 @@
 
 import Link from "next/link";
 
-import IconNavHome from "@/assets/icon-nav-home.svg";
-import IconNavMovies from "@/assets/icon-nav-movies.svg";
-import IconNavShows from "@/assets/icon-nav-tv-series.svg";
-import IconNavBookmark from "@/assets/icon-nav-bookmark.svg";
-import Image from "next/image";
+import IconNavHome from "@/ui/IconNavHome";
+import IconNavMovies from "@/ui/IconNavMovies";
+import IconNavTvSeries from "@/ui/IconNavTvSeries";
+import IconNavBookmark from "@/ui/IconNavBookmark";
+
 import { usePathname } from "next/navigation";
 
 const links = [
   {
     title: "Home",
     href: "/dashboard",
-    icon: IconNavHome,
+    icon: <IconNavHome />,
   },
   {
     title: "Movies",
     href: "/movies",
-    icon: IconNavMovies,
+    icon: <IconNavMovies />,
   },
   {
     title: "Shows",
     href: "/shows",
-    icon: IconNavShows,
+    icon: <IconNavTvSeries />,
   },
   {
     title: "Bookmarks",
     href: "/bookmarked",
-    icon: IconNavBookmark,
+    icon: <IconNavBookmark />,
   },
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
-    <nav className="flex gap-6">
+    <nav className="flex gap-6 lg:flex-col">
       {links.map((link) => (
-        <Link key={link.title} href={link.href}>
-          <Image src={link.icon} alt={link.title} />
+        <Link
+          className={`transition duration-300 hover:text-primary-500 ${pathname === link.href ? "text-white" : "text-secondary-500"}`}
+          key={link.title}
+          href={link.href}
+        >
+          {link.icon}
         </Link>
       ))}
     </nav>

@@ -1,0 +1,31 @@
+import Image from "next/image";
+
+import { MediaData } from "@/lib/data-service";
+
+import IconCategoryMovie from "@/assets/icon-category-movie.svg";
+import IconCategoryTV from "@/assets/icon-category-tv.svg";
+
+export default function MediaItemDetails({ data }: { data: MediaData }) {
+  const { title, year, category, rating } = data;
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center gap-2 text-xs text-white/75">
+        <span>{year}</span>
+        <div className="size-[2px] rounded-full bg-white/50"></div>
+        <span className="flex items-center gap-1">
+          {category === "Movie" && (
+            <Image src={IconCategoryMovie} alt="Movie icon" />
+          )}
+          {category === "TV Series" && (
+            <Image src={IconCategoryTV} alt="TV Series icon" />
+          )}
+          {category}
+        </span>
+        <div className="size-[2px] rounded-full bg-white/50"></div>
+        <span>{rating}</span>
+      </div>
+      <h3 className="text-sm font-medium">{title}</h3>
+    </div>
+  );
+}

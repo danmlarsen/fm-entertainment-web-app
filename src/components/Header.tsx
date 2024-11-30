@@ -4,10 +4,12 @@ import UserButton from "./UserButton";
 
 export default function Header() {
   return (
-    <header>
-      <div className="flex items-center justify-between bg-secondary-700 p-4">
+    <header className="md:p-6">
+      <div className="flex items-center justify-between bg-secondary-700 p-4 md:rounded-lg md:p-5 lg:min-h-[calc(100vh-48px)] lg:flex-col lg:justify-start lg:rounded-2xl lg:p-7">
         <Logo />
-        <Navigation />
+        <div className="lg:mt-20 lg:flex-1">
+          <Navigation />
+        </div>
         <UserButton />
       </div>
     </header>
