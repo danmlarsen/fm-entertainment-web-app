@@ -1,11 +1,10 @@
-import { getRecommendedMedia, getTrendingMedia } from "@/lib/data-service";
-
 import TrendingSlider from "@/components/TrendingSlider";
 import MediaList from "@/components/MediaList";
+import { getRecommendedMedia, getTrendingMedia } from "@/lib/firebase";
 
-export default function Page() {
-  const trendingData = getTrendingMedia();
-  const recommendedData = getRecommendedMedia();
+export default async function Page() {
+  const { data: trendingData } = await getTrendingMedia();
+  const { data: recommendedData } = await getRecommendedMedia();
 
   return (
     <div className="space-y-6">

@@ -1,11 +1,10 @@
 import Image from "next/image";
 
-import { MediaData } from "@/lib/data-service";
-
 import IconCategoryMovie from "@/assets/icon-category-movie.svg";
 import IconCategoryTV from "@/assets/icon-category-tv.svg";
+import { MediaType } from "@/types/MediaType";
 
-export default function MediaItemDetails({ data }: { data: MediaData }) {
+export default function MediaItemDetails({ data }: { data: MediaType }) {
   const { title, year, category, rating } = data;
 
   return (

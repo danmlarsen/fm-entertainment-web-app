@@ -1,10 +1,9 @@
-import { getMovies, getShows } from "@/lib/data-service";
-
 import MediaList from "@/components/MediaList";
+import { getBookmarked } from "@/lib/firebase";
 
-export default function Page() {
-  const movies = getMovies().filter((movie) => movie.isBookmarked);
-  const shows = getShows().filter((show) => show.isBookmarked);
+export default async function Page() {
+  const { data: movies } = await getBookmarked("Movie");
+  const { data: shows } = await getBookmarked("TV Series");
 
   return (
     <div className="space-y-6">

@@ -1,9 +1,8 @@
-import { getMovies } from "@/lib/data-service";
-
 import MediaList from "@/components/MediaList";
+import { getMovies } from "@/lib/firebase";
 
-export default function Page() {
-  const movies = getMovies();
+export default async function Page() {
+  const { data: movies } = await getMovies();
 
   return (
     <div>

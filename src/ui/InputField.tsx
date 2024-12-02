@@ -1,19 +1,12 @@
-type AppProps = {
+interface AppProps extends React.ComponentPropsWithoutRef<"input"> {
   name: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  type?: "text" | "email" | "password";
   isValid?: boolean;
-};
+}
 
 export default function InputField({
   name,
-  onChange,
-  value = "",
-  placeholder = "",
-  type = "text",
   isValid = true,
+  ...props
 }: AppProps) {
   return (
     <label
@@ -22,12 +15,9 @@ export default function InputField({
     >
       <input
         className="w-full bg-transparent focus:outline-none"
-        type={type}
         name={name}
         id={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        {...props}
       />
       {!isValid && <span className="text-primary-500">test</span>}
     </label>
