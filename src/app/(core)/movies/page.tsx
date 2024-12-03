@@ -1,13 +1,16 @@
 import MediaList from "@/components/MediaList";
-import { getMovies } from "@/lib/firebase";
+import MediaSearch from "@/components/MediaSearch";
+import { getMedia } from "@/lib/firebase-service";
+import SectionTitle from "@/ui/SectionTitle";
 
 export default async function Page() {
-  const { data: movies } = await getMovies();
+  const movies = await getMedia({ category: "Movie" });
 
   return (
-    <div>
+    <div className="space-y-6">
+      <MediaSearch placeholder="Search for movies" />
       <div className="space-y-6">
-        <h2>Movies</h2>
+        <SectionTitle>Movies</SectionTitle>
         <MediaList data={movies} />
       </div>
     </div>

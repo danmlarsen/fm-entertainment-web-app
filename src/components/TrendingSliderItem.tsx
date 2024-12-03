@@ -10,7 +10,7 @@ export default function TrendingSliderItem({ data }: { data: MediaType }) {
   if (!trendingThumbnails) return null;
 
   return (
-    <li className="group relative h-[140px] w-[240px] overflow-hidden rounded-lg">
+    <li className="group relative h-full w-[240px] overflow-hidden rounded-lg md:w-[470px]">
       <Image
         className="object-cover transition duration-300 group-hover:scale-110"
         src={trendingThumbnails[0]}

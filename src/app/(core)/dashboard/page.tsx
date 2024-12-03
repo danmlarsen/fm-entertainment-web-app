@@ -1,20 +1,24 @@
 import TrendingSlider from "@/components/TrendingSlider";
-import MediaList from "@/components/MediaList";
-import { getRecommendedMedia, getTrendingMedia } from "@/lib/firebase";
+import { Suspense } from "react";
+import RecommendedMedia from "./RecommendedMedia";
+import SectionTitle from "@/ui/SectionTitle";
+import MediaSearch from "@/components/MediaSearch";
 
-export default async function Page() {
-  const { data: trendingData } = await getTrendingMedia();
-  const { data: recommendedData } = await getRecommendedMedia();
-
+export default function Page() {
   return (
     <div className="space-y-6">
+      <MediaSearch placeholder="Search for movies or TV Series" />
       <div className="space-y-6">
-        <h2>Trending</h2>
-        <TrendingSlider data={trendingData} />
+        <SectionTitle>Trending</SectionTitle>
+        <Suspense fallback={<p>Loading...</p>}>
+          <TrendingSlider />
+        </Suspense>
       </div>
       <div className="space-y-6">
-        <h2>Recommended for you</h2>
-        <MediaList data={recommendedData} />
+        <SectionTitle>Recommended for you</SectionTitle>
+        <Suspense fallback={<p>Loading...</p>}>
+          <RecommendedMedia />
+        </Suspense>
       </div>
     </div>
   );
