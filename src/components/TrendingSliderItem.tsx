@@ -1,6 +1,6 @@
 import Image from "next/image";
 import MediaItemDetails from "./MediaItemDetails";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "../ui/BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
@@ -17,7 +17,7 @@ export default function TrendingSliderItem({ data }: { data: MediaType }) {
         alt={title}
         fill
       />
-      <div className="absolute inset-0 flex items-end p-4">
+      <div className="pointer-events-none absolute inset-0 z-10 flex items-end p-4">
         <MediaItemDetails data={data} />
       </div>
       <PlayMediaOverlay />

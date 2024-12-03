@@ -1,5 +1,10 @@
 "use client";
 
+import AuthCard, {
+  AuthCardBody,
+  AuthCardFooter,
+  AuthCardTitle,
+} from "@/ui/AuthCard";
 import Button from "@/ui/Button";
 import InputField from "@/ui/InputField";
 import Link from "next/link";
@@ -11,9 +16,9 @@ export default function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
-    <div className="container mx-auto max-w-[400px] space-y-10 rounded-lg bg-secondary-700 p-6">
-      <h1 className="text-3xl">Sign Up</h1>
-      <div className="space-y-6">
+    <AuthCard>
+      <AuthCardTitle>Sign Up</AuthCardTitle>
+      <AuthCardBody>
         <InputField
           name="email"
           type="email"
@@ -35,8 +40,8 @@ export default function SignupForm() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-      </div>
-      <div className="grid gap-6">
+      </AuthCardBody>
+      <AuthCardFooter>
         <Button>Create an account</Button>
         <p className="space-x-3 text-center">
           <span>Already have an account?</span>
@@ -44,7 +49,7 @@ export default function SignupForm() {
             Login
           </Link>
         </p>
-      </div>
-    </div>
+      </AuthCardFooter>
+    </AuthCard>
   );
 }

@@ -9,9 +9,9 @@ export default function MediaItemDetails({ data }: { data: MediaType }) {
 
   return (
     <div className="space-y-1">
-      <div className="flex items-center gap-2 text-xs text-white/75">
+      <div className="flex items-center gap-2 text-xs text-white/75 md:text-sm">
         <span>{year}</span>
-        <div className="size-[2px] rounded-full bg-white/50"></div>
+        <div className="size-[2px] rounded-full bg-white/50" />
         <span className="flex items-center gap-1">
           {category === "Movie" && (
             <Image src={IconCategoryMovie} alt="Movie icon" />
@@ -21,10 +21,10 @@ export default function MediaItemDetails({ data }: { data: MediaType }) {
           )}
           {category}
         </span>
-        <div className="size-[2px] rounded-full bg-white/50"></div>
+        <div className="size-[2px] rounded-full bg-white/50" />
         <span>{rating}</span>
       </div>
-      <h3 className="text-sm font-medium">{title}</h3>
+      <h3 className="text-sm font-medium md:text-lg">{title}</h3>
     </div>
   );
 }

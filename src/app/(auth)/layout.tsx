@@ -1,4 +1,4 @@
-import Logo from "@/components/Logo";
+import Logo from "@/ui/Logo";
 
 export default function Layout({
   children,

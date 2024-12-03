@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import MediaItemDetails from "./MediaItemDetails";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "../ui/BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 

@@ -1,5 +1,10 @@
 "use client";
 
+import AuthCard, {
+  AuthCardBody,
+  AuthCardFooter,
+  AuthCardTitle,
+} from "@/ui/AuthCard";
 import Button from "@/ui/Button";
 import InputField from "@/ui/InputField";
 import Link from "next/link";
@@ -10,9 +15,9 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="container mx-auto max-w-[400px] space-y-10 rounded-lg bg-secondary-700 p-6">
-      <h1 className="text-3xl">Login</h1>
-      <div className="space-y-6">
+    <AuthCard>
+      <AuthCardTitle>Login</AuthCardTitle>
+      <AuthCardBody>
         <InputField
           name="email"
           type="email"
@@ -27,8 +32,8 @@ export default function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
-      <div className="grid gap-6">
+      </AuthCardBody>
+      <AuthCardFooter>
         <Button>Login to your account</Button>
         <p className="space-x-3 text-center">
           <span>Dont have an account?</span>
@@ -36,7 +41,7 @@ export default function LoginForm() {
             Sign Up
           </Link>
         </p>
-      </div>
-    </div>
+      </AuthCardFooter>
+    </AuthCard>
   );
 }

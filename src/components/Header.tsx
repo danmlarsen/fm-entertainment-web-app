@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Logo from "../ui/Logo";
 import Navigation from "./Navigation";
 import UserButton from "./UserButton";
 
