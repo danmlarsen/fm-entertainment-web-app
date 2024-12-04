@@ -1,24 +1,24 @@
-import MediaList from "@/components/MediaList";
 import MediaSearch from "@/components/MediaSearch";
-import { getMedia } from "@/lib/firebase-service";
 import SectionTitle from "@/ui/SectionTitle";
+import BookmarkedMoviesList from "./BookmarkedMoviesList";
+import BookmarkedShowsList from "./BookmarkedShowsList";
+import { Suspense } from "react";
 
 export default async function Page() {
-  const [movies, shows] = await Promise.all([
-    getMedia({ category: "Movie", filters: { isBookmarked: true } }),
-    getMedia({ category: "TV Series", filters: { isBookmarked: true } }),
-  ]);
-
   return (
     <div className="space-y-6">
       <MediaSearch placeholder="Search for bookmarked shows" />
       <div className="space-y-6">
         <SectionTitle>Bookmarked Movies</SectionTitle>
-        <MediaList data={movies} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <BookmarkedMoviesList />
+        </Suspense>
       </div>
       <div className="space-y-6">
         <SectionTitle>Bookmarked TV Series</SectionTitle>
-        <MediaList data={shows} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <BookmarkedShowsList />
+        </Suspense>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import { MediaType } from "@/types/MediaType";
 import { firestore } from "@/firebase/server";
 import { Query } from "firebase-admin/firestore";
+import "server-only";
+import { unstable_cache } from "next/cache";
 
 type GetMediaOptions = {
   category?: "Movie" | "TV Series";
@@ -11,25 +13,26 @@ type GetMediaOptions = {
   limit?: number;
 };
 
+export const getCachedMedia = unstable_cache(async (options) =>
+  getMedia(options),
+);
+
 export async function getMedia(options?: GetMediaOptions) {
   let query = firestore.collection("media") as Query;
 
-  if (options?.category !== null && options?.category !== undefined) {
-    query = query.where("category", "==", options.category);
+  const { category } = options || {};
+  const { isTrending, isBookmarked } = options?.filters || {};
+
+  if (category !== null && category !== undefined) {
+    query = query.where("category", "==", category);
   }
 
-  if (
-    options?.filters?.isTrending !== null &&
-    options?.filters?.isTrending !== undefined
-  ) {
-    query = query.where("isTrending", "==", options?.filters?.isTrending);
+  if (isTrending !== null && isTrending !== undefined) {
+    query = query.where("isTrending", "==", isTrending);
   }
 
-  if (
-    options?.filters?.isBookmarked !== null &&
-    options?.filters?.isBookmarked !== undefined
-  ) {
-    query = query.where("isBookmarked", "==", options?.filters?.isBookmarked);
+  if (isBookmarked !== null && isBookmarked !== undefined) {
+    query = query.where("isBookmarked", "==", isBookmarked);
   }
 
   const DEFAULT_MEDIA_ITEM_LIMIT = 100;

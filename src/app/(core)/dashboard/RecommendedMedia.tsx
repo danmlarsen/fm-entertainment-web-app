@@ -1,8 +1,8 @@
 import MediaList from "@/components/MediaList";
-import { getMedia } from "@/lib/firebase-service";
+import { getCachedMedia } from "@/lib/firebase-service";
 
 export default async function RecommendedMedia() {
-  const recommendedData = await getMedia({
+  const recommendedData = await getCachedMedia({
     filters: { isTrending: false },
   });
 
