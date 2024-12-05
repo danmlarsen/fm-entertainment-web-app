@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { AuthContextProvider } from "@/context/auth";
 
 const outfitFont = Outfit({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body
         className={`${outfitFont.className} bg-secondary-900 font-light text-white antialiased`}
       >
-        {children}
+        <AuthContextProvider>{children}</AuthContextProvider>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import ContinueWithGoogleButton from "@/components/ContinueWithGoogleButton";
 import AuthCard, {
   AuthCardBody,
   AuthCardFooter,
@@ -35,6 +36,7 @@ export default function LoginForm() {
       </AuthCardBody>
       <AuthCardFooter>
         <Button>Login to your account</Button>
+        <ContinueWithGoogleButton />
         <p className="space-x-3 text-center">
           <span>Dont have an account?</span>
           <Link className="text-primary-500" href="/signup">

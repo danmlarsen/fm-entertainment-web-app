@@ -4,6 +4,8 @@ import { Query } from "firebase-admin/firestore";
 import "server-only";
 import { unstable_cache } from "next/cache";
 
+const REVALIDATE_SECONDS = 5;
+
 type GetMediaOptions = {
   category?: "Movie" | "TV Series";
   filters?: {
@@ -13,8 +15,10 @@ type GetMediaOptions = {
   limit?: number;
 };
 
-export const getCachedMedia = unstable_cache(async (options) =>
-  getMedia(options),
+export const getCachedMedia = unstable_cache(
+  async (options) => getMedia(options),
+  ["getMedia"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["getMedia"] },
 );
 
 export async function getMedia(options?: GetMediaOptions) {
