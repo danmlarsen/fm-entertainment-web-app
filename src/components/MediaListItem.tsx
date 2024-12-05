@@ -8,6 +8,7 @@ import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 import { createBookmark, deleteBookmark } from "@/lib/actions";
 import { useAuth } from "@/context/auth";
+import { useTransition, useOptimistic } from "react";
 
 export default function MediaListItem({ data }: { data: MediaType }) {
   const auth = useAuth();
@@ -16,14 +17,25 @@ export default function MediaListItem({ data }: { data: MediaType }) {
 
   const [smallThumbnail, mediumThumbnail, largeThumbnail] = regularThumbnails;
 
+  const [, startTransition] = useTransition();
+  const [optimisticBookmark, addOptimistic] = useOptimistic(
+    isBookmarked,
+    (curState) => !curState,
+  );
+
   async function handleBookmarkClick() {
     const token = await auth?.currentUser?.getIdToken();
     if (!token) {
       return;
     }
 
-    if (isBookmarked) await deleteBookmark(data.id, token);
-    else await createBookmark(data.id, token);
+    startTransition(() => addOptimistic(!isBookmarked));
+
+    if (isBookmarked) {
+      await deleteBookmark(data.id, token);
+    } else {
+      await createBookmark(data.id, token);
+    }
   }
 
   return (
@@ -42,7 +54,7 @@ export default function MediaListItem({ data }: { data: MediaType }) {
         </picture>
         <PlayMediaOverlay />
         <BookmarkButton
-          isBookmarked={isBookmarked}
+          isBookmarked={optimisticBookmark}
           onClick={handleBookmarkClick}
         />
       </div>
