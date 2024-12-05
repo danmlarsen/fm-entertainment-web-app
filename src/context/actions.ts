@@ -25,7 +25,6 @@ export async function setToken({
     const userRecord = await auth.getUser(verifiedToken.uid);
     if (process.env.ADMIN_EMAIL === userRecord.email) {
       // ADMIN STUFF
-      console.log("is admin");
     }
 
     const cookieStore = await cookies();
