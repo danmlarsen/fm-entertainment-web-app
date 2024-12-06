@@ -3,7 +3,7 @@
 import { auth, firestore } from "@/firebase/server";
 import { revalidateTag } from "next/cache";
 
-export async function createBookmark(id: string, authToken: string) {
+export async function createBookmark(mediaId: string, authToken: string) {
   const verifiedToken = await auth.verifyIdToken(authToken);
 
   if (!verifiedToken) {
@@ -14,14 +14,14 @@ export async function createBookmark(id: string, authToken: string) {
   }
 
   await firestore.collection("bookmarks").add({
-    id,
+    mediaId,
     userId: verifiedToken.uid,
   });
 
   revalidateTag("getMedia");
 }
 
-export async function deleteBookmark(id: string, authToken: string) {
+export async function deleteBookmark(mediaId: string, authToken: string) {
   const verifiedToken = await auth.verifyIdToken(authToken);
 
   if (!verifiedToken) {
@@ -33,7 +33,7 @@ export async function deleteBookmark(id: string, authToken: string) {
 
   const bookmarkSnapshot = await firestore
     .collection("bookmarks")
-    .where("id", "==", id)
+    .where("mediaId", "==", mediaId)
     .where("userId", "==", verifiedToken.uid)
     .get();
   if (bookmarkSnapshot.empty) return;

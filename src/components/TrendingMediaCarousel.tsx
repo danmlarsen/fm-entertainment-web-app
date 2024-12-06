@@ -1,8 +1,8 @@
 import { getCachedMedia } from "@/lib/firebase-service";
-import TrendingSliderList from "./TrendingSliderList";
 import { cookies } from "next/headers";
+import TrendingMediaCarouselList from "./TrendingMediaCarouselList";
 
-export default async function TrendingSlider() {
+export default async function TrendingMediaCarousel() {
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
@@ -10,9 +10,5 @@ export default async function TrendingSlider() {
     filters: { isTrending: true },
   });
 
-  return (
-    <div className="relative min-h-[140px] overflow-x-hidden md:min-h-[230px]">
-      <TrendingSliderList data={trendingData} />
-    </div>
-  );
+  return <TrendingMediaCarouselList data={trendingData} />;
 }

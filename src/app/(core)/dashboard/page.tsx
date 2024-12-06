@@ -1,8 +1,8 @@
-import TrendingSlider from "@/components/TrendingSlider";
 import { Suspense } from "react";
 import RecommendedMedia from "./RecommendedMedia";
 import SectionTitle from "@/ui/SectionTitle";
 import MediaSearch from "@/components/MediaSearch";
+import TrendingMediaCarousel from "@/components/TrendingMediaCarousel";
 
 export default function Page() {
   return (
@@ -11,7 +11,7 @@ export default function Page() {
       <div className="space-y-6">
         <SectionTitle>Trending</SectionTitle>
         <Suspense fallback={<p>Loading...</p>}>
-          <TrendingSlider />
+          <TrendingMediaCarousel />
         </Suspense>
       </div>
       <div className="space-y-6">

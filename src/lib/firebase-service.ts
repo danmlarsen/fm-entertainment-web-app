@@ -10,7 +10,6 @@ type GetMediaOptions = {
   category?: "Movie" | "TV Series";
   filters?: {
     isTrending?: boolean;
-    isBookmarked?: boolean;
   };
   limit?: number;
 };
@@ -32,12 +31,14 @@ export async function getMedia(token: string, options?: GetMediaOptions) {
       .collection("bookmarks")
       .where("userId", "==", verifiedToken.uid)
       .get();
-    const userBookmarks = bookmarksSnapshot.docs.map((doc) => doc.data().id);
+    const userBookmarks: string[] = bookmarksSnapshot.docs.map(
+      (doc) => doc.data().mediaId,
+    );
 
     let query = firestore.collection("media") as Query;
 
     const { category } = options || {};
-    const { isTrending, isBookmarked } = options?.filters || {};
+    const { isTrending } = options?.filters || {};
 
     if (category !== null && category !== undefined) {
       query = query.where("category", "==", category);
@@ -45,10 +46,6 @@ export async function getMedia(token: string, options?: GetMediaOptions) {
 
     if (isTrending !== null && isTrending !== undefined) {
       query = query.where("isTrending", "==", isTrending);
-    }
-
-    if (isBookmarked !== null && isBookmarked !== undefined) {
-      query = query.where("isBookmarked", "==", isBookmarked);
     }
 
     const DEFAULT_MEDIA_ITEM_LIMIT = 100;

@@ -4,7 +4,11 @@ import BookmarkButton from "../ui/BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
-export default function TrendingSliderItem({ data }: { data: MediaType }) {
+export default function TrendingMediaCarouselItem({
+  data,
+}: {
+  data: MediaType;
+}) {
   const { title, trendingThumbnails } = data;
 
   if (!trendingThumbnails) return null;
