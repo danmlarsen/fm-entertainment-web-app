@@ -6,7 +6,7 @@ export default async function MovieList() {
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
-  const movies = await getCachedMedia({ category: "Movie", token });
+  const movies = await getCachedMedia(token, { category: "Movie" });
 
   return <MediaList data={movies} />;
 }

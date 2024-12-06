@@ -6,9 +6,8 @@ export default async function BookmarkedMoviesList() {
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
-  const movies = await getCachedMedia({
+  const movies = await getCachedMedia(token, {
     category: "Movie",
-    token,
   });
 
   const bookmarkedMovies = movies.filter((movie) => movie.isBookmarked);

@@ -1,42 +1,14 @@
-"use client";
-
 import Image from "next/image";
 
 import MediaItemDetails from "./MediaItemDetails";
 import BookmarkButton from "../ui/BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
-import { createBookmark, deleteBookmark } from "@/lib/actions";
-import { useAuth } from "@/context/auth";
-import { useTransition, useOptimistic } from "react";
 
 export default function MediaListItem({ data }: { data: MediaType }) {
-  const auth = useAuth();
-
-  const { title, regularThumbnails, isBookmarked } = data;
+  const { title, regularThumbnails } = data;
 
   const [smallThumbnail, mediumThumbnail, largeThumbnail] = regularThumbnails;
-
-  const [, startTransition] = useTransition();
-  const [optimisticBookmark, addOptimistic] = useOptimistic(
-    isBookmarked,
-    (curState) => !curState,
-  );
-
-  async function handleBookmarkClick() {
-    const token = await auth?.currentUser?.getIdToken();
-    if (!token) {
-      return;
-    }
-
-    startTransition(() => addOptimistic(!isBookmarked));
-
-    if (isBookmarked) {
-      await deleteBookmark(data.id, token);
-    } else {
-      await createBookmark(data.id, token);
-    }
-  }
 
   return (
     <li className="space-y-2">
@@ -53,10 +25,7 @@ export default function MediaListItem({ data }: { data: MediaType }) {
           />
         </picture>
         <PlayMediaOverlay />
-        <BookmarkButton
-          isBookmarked={optimisticBookmark}
-          onClick={handleBookmarkClick}
-        />
+        <BookmarkButton data={data} />
       </div>
       <MediaItemDetails data={data} />
     </li>

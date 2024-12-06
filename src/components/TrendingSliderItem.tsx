@@ -5,7 +5,7 @@ import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
 export default function TrendingSliderItem({ data }: { data: MediaType }) {
-  const { title, trendingThumbnails, isBookmarked } = data;
+  const { title, trendingThumbnails } = data;
 
   if (!trendingThumbnails) return null;
 
@@ -21,7 +21,7 @@ export default function TrendingSliderItem({ data }: { data: MediaType }) {
         <MediaItemDetails data={data} />
       </div>
       <PlayMediaOverlay />
-      <BookmarkButton isBookmarked={isBookmarked} />
+      <BookmarkButton data={data} />
     </li>
   );
 }

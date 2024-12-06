@@ -6,9 +6,8 @@ export default async function RecommendedMedia() {
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
-  const recommendedData = await getCachedMedia({
+  const recommendedData = await getCachedMedia(token, {
     filters: { isTrending: false },
-    token: token || null,
   });
 
   return <MediaList data={recommendedData} />;

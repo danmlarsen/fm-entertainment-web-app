@@ -18,8 +18,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!token && !request.nextUrl.pathname.startsWith("/login")) {
-    console.log(request.nextUrl.pathname);
-
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
