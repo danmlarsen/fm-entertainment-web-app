@@ -1,3 +1,4 @@
+import { decodeJwt } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,8 +18,19 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  if (!token && !request.nextUrl.pathname.startsWith("/login")) {
+  if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  const decodedToken = decodeJwt(token);
+
+  if (decodedToken.exp && (decodedToken.exp - 300) * 1000 < Date.now()) {
+    return NextResponse.redirect(
+      new URL(
+        `/api/refresh-token?redirect=${encodeURIComponent(request.nextUrl.pathname)}`,
+        request.url,
+      ),
+    );
   }
 
   return NextResponse.next();

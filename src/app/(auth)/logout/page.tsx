@@ -11,16 +11,19 @@ export default function Logout() {
 
   useEffect(() => {
     async function logout() {
-      await auth?.logout();
-      router.push("/");
+      await Promise.all([
+        auth?.logout(),
+        new Promise((resolve) => setTimeout(resolve, 500)),
+      ]);
+      router.replace("/");
     }
     logout();
   }, []);
 
   return (
     <AuthCard>
-      <AuthCardTitle>Logging out...</AuthCardTitle>
-      {/* <AuthCardBody></AuthCardBody> */}
+      <AuthCardTitle>Please wait...</AuthCardTitle>
+      <AuthCardBody>Logging out</AuthCardBody>
     </AuthCard>
   );
 }
