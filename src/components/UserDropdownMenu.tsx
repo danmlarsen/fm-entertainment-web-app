@@ -44,14 +44,15 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
           </UserDropdownMenuItem>
         )}
         <UserDropdownMenuItem>
-          <button
+          <Link href={`/logout`}>Logout</Link>
+          {/* <button
             onClick={async () => {
               await auth?.logout();
               router.refresh();
             }}
           >
             Logout
-          </button>
+          </button> */}
         </UserDropdownMenuItem>
       </ul>
     </motion.div>
