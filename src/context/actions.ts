@@ -23,8 +23,13 @@ export async function setToken({
     }
 
     const userRecord = await auth.getUser(verifiedToken.uid);
-    if (process.env.ADMIN_EMAIL === userRecord.email) {
-      // ADMIN STUFF
+    if (
+      process.env.ADMIN_EMAIL === userRecord.email &&
+      !userRecord.customClaims?.admin
+    ) {
+      auth.setCustomUserClaims(verifiedToken.uid, {
+        admin: true,
+      });
     }
 
     const cookieStore = await cookies();

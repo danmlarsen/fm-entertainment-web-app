@@ -1,7 +1,12 @@
 "use client";
 
 import { auth } from "@/firebase/client";
-import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  ParsedToken,
+  signInWithPopup,
+  User,
+} from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { setToken, removeToken } from "./actions";
 
@@ -9,6 +14,7 @@ type AuthContextType = {
   currentUser: User | null;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
+  customClaims: ParsedToken | null;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -19,6 +25,7 @@ export function AuthContextProvider({
   children: React.ReactNode;
 }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [customClaims, setCustomClaims] = useState<ParsedToken | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -28,6 +35,8 @@ export function AuthContextProvider({
         const tokenResult = await user.getIdTokenResult();
         const token = tokenResult.token;
         const refreshToken = user.refreshToken;
+        const claims = tokenResult.claims;
+        setCustomClaims(claims ?? null);
 
         if (token && refreshToken) {
           await setToken({
@@ -58,6 +67,7 @@ export function AuthContextProvider({
         currentUser,
         logout,
         loginWithGoogle,
+        customClaims,
       }}
     >
       {children}

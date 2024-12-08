@@ -9,15 +9,16 @@ import { useState } from "react";
 export default function MediaSearch({ ...props }) {
   const [searchString, setSearchString] = useState("");
 
-  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const params = new URLSearchParams(searchParams);
-    params.set("search", searchString);
-    router.replace(`${pathname}?${params.toString()}`);
+    const params = new URLSearchParams();
+    if (!!searchString) {
+      params.set("search", searchString);
+    }
+    router.push(`${pathname}?${params.toString()}`);
   }
 
   return (

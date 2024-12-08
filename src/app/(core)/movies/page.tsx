@@ -7,7 +7,7 @@ import MediaSearchResult from "@/components/MediaSearchResult";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { search: string };
+  searchParams: Promise<any>;
 }) {
   const { search: searchString } = await searchParams;
 
@@ -22,7 +22,7 @@ export default async function Page({
           </Suspense>
         </div>
       )}
-      {searchString && (
+      {!!searchString && (
         <MediaSearchResult searchString={searchString} category="Movie" />
       )}
     </div>
