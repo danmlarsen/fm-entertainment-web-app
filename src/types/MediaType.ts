@@ -4,8 +4,9 @@ export type MediaType = {
   year: number;
   category: string;
   rating: string;
-  regularThumbnails: [small: string, medium: string, large: string];
-  trendingThumbnails?: [small: string, large: string];
+  thumbnail: string;
+  // regularThumbnails: [small: string, medium: string, large: string];
+  // trendingThumbnails?: [small: string, large: string];
   isTrending: boolean;
   isBookmarked: boolean;
 };

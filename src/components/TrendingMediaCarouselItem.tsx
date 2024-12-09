@@ -9,15 +9,13 @@ export default function TrendingMediaCarouselItem({
 }: {
   data: MediaType;
 }) {
-  const { title, trendingThumbnails } = data;
-
-  if (!trendingThumbnails) return null;
+  const { title, thumbnail } = data;
 
   return (
     <li className="group relative h-full w-[240px] overflow-hidden rounded-lg md:w-[470px]">
       <Image
         className="object-cover transition duration-300 group-hover:scale-110"
-        src={trendingThumbnails[0]}
+        src={thumbnail}
         alt={title}
         fill
       />

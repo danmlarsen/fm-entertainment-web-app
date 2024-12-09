@@ -14,7 +14,7 @@ export default function UserButton() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative flex">
       <button onClick={() => setShowDropdown((prev) => !prev)}>
         {!!auth?.currentUser?.photoURL && (
           <Image
