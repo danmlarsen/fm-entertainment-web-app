@@ -1,16 +1,14 @@
+import { FieldError } from "react-hook-form";
+
 interface AppProps extends React.ComponentPropsWithoutRef<"input"> {
   name: string;
-  isValid?: boolean;
+  error: string;
 }
 
-export default function InputField({
-  name,
-  isValid = true,
-  ...props
-}: AppProps) {
+export default function InputField({ name, error, ...props }: AppProps) {
   return (
     <label
-      className={`flex cursor-pointer border-b px-4 pb-[18px] ${!isValid ? "border-b-primary-500" : "border-b-secondary-500 has-[:focus]:border-b-white"}`}
+      className={`relative flex cursor-pointer border-b px-4 pb-[18px] ${!!error ? "border-b-primary-500" : "border-b-secondary-500 has-[:focus]:border-b-white"}`}
       htmlFor={name}
     >
       <input
@@ -19,7 +17,9 @@ export default function InputField({
         id={name}
         {...props}
       />
-      {!isValid && <span className="text-primary-500">test</span>}
+      {!!error && (
+        <span className="absolute right-0 top-0 text-primary-500">{error}</span>
+      )}
     </label>
   );
 }

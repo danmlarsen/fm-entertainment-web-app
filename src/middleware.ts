@@ -10,11 +10,19 @@ export async function middleware(request: NextRequest) {
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
 
-  if (!token && request.nextUrl.pathname.startsWith("/login")) {
+  if (
+    !token &&
+    (request.nextUrl.pathname.startsWith("/login") ||
+      request.nextUrl.pathname.startsWith("/signup"))
+  ) {
     return NextResponse.next();
   }
 
-  if (token && request.nextUrl.pathname.startsWith("/login")) {
+  if (
+    token &&
+    (request.nextUrl.pathname.startsWith("/login") ||
+      request.nextUrl.pathname.startsWith("/signup"))
+  ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
@@ -40,6 +48,7 @@ export const config = {
   matcher: [
     "/",
     "/login",
+    "/signup",
     "/logout",
     "/dashboard",
     "/movies",
