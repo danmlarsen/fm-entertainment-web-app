@@ -1,13 +1,11 @@
 "use client";
 
-import Image from "next/image";
-
-import IconBookMarkEmpty from "@/assets/icon-bookmark-empty.svg";
-import IconBookMarkFull from "@/assets/icon-bookmark-full.svg";
 import { MediaType } from "@/types/MediaType";
 import { createBookmark, deleteBookmark } from "@/lib/actions";
 import { useAuth } from "@/context/auth";
 import { useOptimistic, useTransition } from "react";
+import IconBookmarkFull from "@/ui/IconBookmarkFull";
+import IconBookmarkEmpty from "@/ui/IconBookmarkEmpty";
 
 interface AppProps extends React.ComponentPropsWithoutRef<"button"> {
   data: MediaType;
@@ -41,15 +39,11 @@ export default function BookmarkButton({ data, ...props }: AppProps) {
 
   return (
     <button
-      className="absolute right-2 top-2 grid size-8 place-items-center rounded-full bg-secondary-900/50"
+      className={`absolute right-2 top-2 grid size-8 place-items-center rounded-full bg-secondary-900/50 transition duration-300 hover:bg-white hover:text-black`}
       onClick={handleBookmarkClick}
       {...props}
     >
-      {optimisticIsBookmarked ? (
-        <Image src={IconBookMarkFull} alt="Filled bookmark" />
-      ) : (
-        <Image src={IconBookMarkEmpty} alt="Empty bookmark" />
-      )}
+      {optimisticIsBookmarked ? <IconBookmarkFull /> : <IconBookmarkEmpty />}
     </button>
   );
 }

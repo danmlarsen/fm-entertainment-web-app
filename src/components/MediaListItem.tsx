@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import MediaItemDetails from "./MediaItemDetails";
-import BookmarkButton from "../ui/BookmarkButton";
+import BookmarkButton from "./BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
@@ -12,7 +12,7 @@ export default function MediaListItem({ data }: { data: MediaType }) {
 
   return (
     <li className="space-y-2">
-      <div className="group relative h-28 cursor-pointer overflow-hidden rounded-lg md:h-36 lg:h-44">
+      <div className="relative h-28 cursor-pointer overflow-hidden rounded-lg md:h-36 lg:h-44">
         {/* <picture>
           <source media="(max-width: 768px)" srcSet={smallThumbnail}></source>
           <source media="(max-width: 1024px)" srcSet={mediumThumbnail}></source> */}
