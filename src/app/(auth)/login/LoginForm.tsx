@@ -1,6 +1,6 @@
 "use client";
 
-import ContinueWithGoogleButton from "@/components/ContinueWithGoogleButton";
+import ContinueWithGoogleButton from "@/app/(auth)/login/ContinueWithGoogleButton";
 import AuthCard, {
   AuthCardBody,
   AuthCardFooter,
