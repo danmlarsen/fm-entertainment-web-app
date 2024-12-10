@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import UserDropdownMenu from "./UserDropdownMenu";
+import Avatar, { AvatarFallback } from "@/ui/Avatar";
 
 export default function UserButton() {
   const auth = useAuth();
@@ -16,15 +17,21 @@ export default function UserButton() {
   return (
     <div className="relative flex">
       <button onClick={() => setShowDropdown((prev) => !prev)}>
-        {!!auth?.currentUser?.photoURL && (
-          <Image
-            className="aspect-square size-6 rounded-full md:size-8 lg:size-10"
-            src={auth.currentUser.photoURL}
-            alt={`${auth.currentUser.displayName} avatar`}
-            width={24}
-            height={24}
-          />
-        )}
+        <Avatar>
+          {!!auth?.currentUser?.photoURL && (
+            <Image
+              className="h-full w-full"
+              src={auth.currentUser.photoURL}
+              alt={`${auth.currentUser.displayName} avatar`}
+              width={40}
+              height={40}
+            />
+          )}
+          <AvatarFallback>
+            {(auth?.currentUser?.displayName ||
+              auth?.currentUser?.email)?.[0].toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
       </button>
       <AnimatePresence mode="wait">
         {!!showDropdown && (
