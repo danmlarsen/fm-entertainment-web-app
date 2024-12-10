@@ -1,6 +1,5 @@
 "use client";
 
-import { MediaType } from "@/types/MediaType";
 import { createBookmark, deleteBookmark } from "@/lib/actions";
 import { useAuth } from "@/context/auth";
 import { useOptimistic, useTransition } from "react";
@@ -8,13 +7,16 @@ import IconBookmarkFull from "@/ui/IconBookmarkFull";
 import IconBookmarkEmpty from "@/ui/IconBookmarkEmpty";
 
 interface AppProps extends React.ComponentPropsWithoutRef<"button"> {
-  data: MediaType;
+  mediaId: string;
+  isBookmarked: boolean;
 }
 
-export default function BookmarkButton({ data, ...props }: AppProps) {
+export default function BookmarkButton({
+  mediaId,
+  isBookmarked,
+  ...props
+}: AppProps) {
   const auth = useAuth();
-
-  const { isBookmarked } = data;
 
   const [, startTransition] = useTransition();
   const [optimisticIsBookmarked, addOptimistic] = useOptimistic(
@@ -31,9 +33,9 @@ export default function BookmarkButton({ data, ...props }: AppProps) {
     }
 
     if (isBookmarked) {
-      await deleteBookmark(data.id, tokenResult.token);
+      await deleteBookmark(mediaId, tokenResult.token);
     } else {
-      await createBookmark(data.id, tokenResult.token);
+      await createBookmark(mediaId, tokenResult.token);
     }
   }
 

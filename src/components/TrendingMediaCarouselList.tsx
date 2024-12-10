@@ -1,14 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
-import { MediaType } from "@/types/MediaType";
 import { useRef } from "react";
-import TrendingMediaCarouselItem from "./TrendingMediaCarouselItem";
 
 export default function TrendingMediaCarouselList({
-  data,
+  children,
 }: {
-  data: MediaType[];
+  children?: React.ReactNode;
 }) {
   const constraintsRef = useRef(null);
   return (
@@ -21,9 +19,7 @@ export default function TrendingMediaCarouselList({
         dragConstraints={constraintsRef}
         className="absolute flex h-full items-center gap-4"
       >
-        {data.map((item) => (
-          <TrendingMediaCarouselItem key={item.title} data={item} />
-        ))}
+        {children}
       </motion.ul>
     </div>
   );

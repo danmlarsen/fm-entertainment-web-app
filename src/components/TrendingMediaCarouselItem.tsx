@@ -4,12 +4,12 @@ import BookmarkButton from "./BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
-export default function TrendingMediaCarouselItem({
+export default async function TrendingMediaCarouselItem({
   data,
 }: {
   data: MediaType;
 }) {
-  const { title, thumbnail } = data;
+  const { id, title, thumbnail, isBookmarked } = data;
 
   return (
     <li className="group relative h-full w-[240px] overflow-hidden rounded-lg md:w-[470px]">
@@ -23,7 +23,7 @@ export default function TrendingMediaCarouselItem({
         <MediaItemDetails data={data} />
       </div>
       <PlayMediaOverlay />
-      <BookmarkButton data={data} />
+      <BookmarkButton mediaId={id} isBookmarked={isBookmarked} />
     </li>
   );
 }

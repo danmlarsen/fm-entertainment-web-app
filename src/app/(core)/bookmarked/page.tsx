@@ -4,6 +4,7 @@ import BookmarkedMoviesList from "./BookmarkedMoviesList";
 import BookmarkedShowsList from "./BookmarkedShowsList";
 import { Suspense } from "react";
 import MediaSearchResult from "@/components/MediaSearchResult";
+import { getUserBookmarks } from "@/lib/firebase-service";
 
 export default async function Page({
   searchParams,
@@ -11,6 +12,8 @@ export default async function Page({
   searchParams: Promise<any>;
 }) {
   const { search: searchString } = await searchParams;
+
+  const userBookmarks = await getUserBookmarks();
 
   return (
     <div className="space-y-6">
@@ -20,13 +23,13 @@ export default async function Page({
           <div className="space-y-6">
             <SectionTitle>Bookmarked Movies</SectionTitle>
             <Suspense fallback={<p>Loading...</p>}>
-              <BookmarkedMoviesList />
+              <BookmarkedMoviesList bookmarks={Object.keys(userBookmarks)} />
             </Suspense>
           </div>
           <div className="space-y-6">
             <SectionTitle>Bookmarked TV Series</SectionTitle>
             <Suspense fallback={<p>Loading...</p>}>
-              <BookmarkedShowsList />
+              <BookmarkedShowsList bookmarks={Object.keys(userBookmarks)} />
             </Suspense>
           </div>
         </>

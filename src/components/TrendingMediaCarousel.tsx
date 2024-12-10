@@ -1,14 +1,25 @@
-import { getCachedMedia } from "@/lib/firebase-service";
-import { cookies } from "next/headers";
+import { getCachedMedia, getUserBookmarks } from "@/lib/firebase-service";
 import TrendingMediaCarouselList from "./TrendingMediaCarouselList";
+import TrendingMediaCarouselItem from "./TrendingMediaCarouselItem";
 
 export default async function TrendingMediaCarousel() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("firebaseAuthToken")?.value;
-
-  const trendingData = await getCachedMedia(token, {
+  const trendingData = await getCachedMedia({
     filters: { isTrending: true },
   });
 
-  return <TrendingMediaCarouselList data={trendingData} />;
+  const userBookmarks = await getUserBookmarks();
+
+  return (
+    <TrendingMediaCarouselList>
+      {trendingData.map((item) => (
+        <TrendingMediaCarouselItem
+          key={item.title}
+          data={{
+            ...item,
+            isBookmarked: userBookmarks[item.id],
+          }}
+        />
+      ))}
+    </TrendingMediaCarouselList>
+  );
 }

@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, firestore } from "@/firebase/server";
+import { FieldValue } from "firebase-admin/firestore";
 import { revalidateTag } from "next/cache";
 
 export async function createBookmark(mediaId: string, authToken: string) {
@@ -13,10 +14,17 @@ export async function createBookmark(mediaId: string, authToken: string) {
     };
   }
 
-  await firestore.collection("bookmarks").add({
-    mediaId,
-    userId: verifiedToken.uid,
-  });
+  await firestore
+    .collection("bookmarks")
+    .doc(verifiedToken.uid)
+    .set(
+      {
+        [mediaId]: true,
+      },
+      {
+        merge: true,
+      },
+    );
 
   revalidateTag("getMedia");
 }
@@ -31,17 +39,12 @@ export async function deleteBookmark(mediaId: string, authToken: string) {
     };
   }
 
-  const bookmarkSnapshot = await firestore
+  await firestore
     .collection("bookmarks")
-    .where("mediaId", "==", mediaId)
-    .where("userId", "==", verifiedToken.uid)
-    .get();
-  if (bookmarkSnapshot.empty) return;
-
-  const bookmarkId = bookmarkSnapshot.docs.at(0)?.id;
-
-  if (bookmarkId)
-    await firestore.collection("bookmarks").doc(bookmarkId).delete();
+    .doc(verifiedToken.uid)
+    .update({
+      [mediaId]: FieldValue.delete(),
+    });
 
   revalidateTag("getMedia");
 }

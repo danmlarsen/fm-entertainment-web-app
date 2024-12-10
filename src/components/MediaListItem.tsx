@@ -5,8 +5,8 @@ import BookmarkButton from "./BookmarkButton";
 import PlayMediaOverlay from "./PlayMediaOverlay";
 import { MediaType } from "@/types/MediaType";
 
-export default function MediaListItem({ data }: { data: MediaType }) {
-  const { title, thumbnail } = data;
+export default async function MediaListItem({ data }: { data: MediaType }) {
+  const { id, title, thumbnail, isBookmarked } = data;
 
   return (
     <li className="space-y-2">
@@ -20,7 +20,7 @@ export default function MediaListItem({ data }: { data: MediaType }) {
           sizes="(max-width: 375px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw"
         />
         <PlayMediaOverlay />
-        <BookmarkButton data={data} />
+        <BookmarkButton mediaId={id} isBookmarked={isBookmarked} />
       </div>
       <MediaItemDetails data={data} />
     </li>

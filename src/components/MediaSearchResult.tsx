@@ -1,8 +1,6 @@
-import { getMedia } from "@/lib/firebase-service";
+import { getMedia, getUserBookmarks } from "@/lib/firebase-service";
 import SectionTitle from "@/ui/SectionTitle";
-import { cookies } from "next/headers";
 import MediaList from "./MediaList";
-import { MediaType } from "@/types/MediaType";
 
 type AppProps = {
   searchString: string;
@@ -15,16 +13,16 @@ export default async function MediaSearchResult({
   category = "all",
   bookmarks = false,
 }: AppProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("firebaseAuthToken")?.value!;
-
   const options = category !== "all" ? { category } : {};
 
-  const data = await getMedia(token, options);
+  const data = await getMedia(options);
+  const userBookmarks = await getUserBookmarks();
 
   let filteredData = [...data];
   if (bookmarks) {
-    filteredData = filteredData.filter((media) => media.isBookmarked);
+    filteredData = filteredData.filter((media) =>
+      Object.keys(userBookmarks).includes(media.id),
+    );
   }
 
   filteredData = filteredData.filter((media) =>
