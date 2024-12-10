@@ -16,6 +16,7 @@ export default function ContinueWithGoogleButton() {
           router.refresh();
         } catch (e) {}
       }}
+      className="border border-white bg-transparent"
     >
       Continue with Google
     </Button>
