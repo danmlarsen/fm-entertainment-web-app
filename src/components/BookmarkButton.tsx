@@ -25,15 +25,15 @@ export default function BookmarkButton({ data, ...props }: AppProps) {
   async function handleBookmarkClick() {
     startTransition(() => addOptimistic(!isBookmarked));
 
-    const token = await auth?.currentUser?.getIdToken();
-    if (!token) {
+    const tokenResult = await auth?.currentUser?.getIdTokenResult();
+    if (!tokenResult) {
       return;
     }
 
     if (isBookmarked) {
-      await deleteBookmark(data.id, token);
+      await deleteBookmark(data.id, tokenResult.token);
     } else {
-      await createBookmark(data.id, token);
+      await createBookmark(data.id, tokenResult.token);
     }
   }
 

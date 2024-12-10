@@ -36,6 +36,7 @@ export default function LoginForm() {
   async function submit(data: z.infer<typeof loginUserSchema>) {
     try {
       await auth?.loginWithEmail(data.email, data.password);
+      toast.success("Successfully logged in. Redirecting to dashboard.");
       router.refresh();
     } catch (e: any) {
       // console.log({ e });
