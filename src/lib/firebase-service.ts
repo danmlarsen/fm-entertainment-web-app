@@ -4,7 +4,6 @@ import { MediaType } from "@/types/MediaType";
 import { auth, firestore } from "@/firebase/server";
 import { Query } from "firebase-admin/firestore";
 import { unstable_cache } from "next/cache";
-import { cookies } from "next/headers";
 
 const REVALIDATE_SECONDS = 10;
 
@@ -50,15 +49,18 @@ export async function getMedia(options?: GetMediaOptions) {
   );
 }
 
-export async function getUserBookmarks() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("firebaseAuthToken")?.value;
+export const getCachedUserBookmarks = unstable_cache(
+  async (authToken) => getUserBookmarks(authToken),
+  ["getUserBookmarks"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["getUserBookmarks"] },
+);
 
-  if (!token) {
+export async function getUserBookmarks(authToken: string | undefined) {
+  if (!authToken) {
     return {};
   }
 
-  const verifiedToken = await auth.verifyIdToken(token);
+  const verifiedToken = await auth.verifyIdToken(authToken);
 
   if (!verifiedToken) {
     return {};

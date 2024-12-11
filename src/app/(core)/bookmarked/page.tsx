@@ -4,7 +4,8 @@ import BookmarkedMoviesList from "./BookmarkedMoviesList";
 import BookmarkedShowsList from "./BookmarkedShowsList";
 import { Suspense } from "react";
 import MediaSearchResult from "@/components/MediaSearchResult";
-import { getUserBookmarks } from "@/lib/firebase-service";
+import { getCachedUserBookmarks } from "@/lib/firebase-service";
+import { cookies } from "next/headers";
 
 export default async function Page({
   searchParams,
@@ -13,7 +14,9 @@ export default async function Page({
 }) {
   const { search: searchString } = await searchParams;
 
-  const userBookmarks = await getUserBookmarks();
+  const cookieStore = await cookies();
+  const token = cookieStore.get("firebaseAuthToken")?.value;
+  const userBookmarks = await getCachedUserBookmarks(token);
 
   return (
     <div className="space-y-6">

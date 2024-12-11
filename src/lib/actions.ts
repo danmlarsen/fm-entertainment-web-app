@@ -26,7 +26,7 @@ export async function createBookmark(mediaId: string, authToken: string) {
       },
     );
 
-  revalidateTag("getMedia");
+  revalidateTag("getUserBookmarks");
 }
 
 export async function deleteBookmark(mediaId: string, authToken: string) {
@@ -46,5 +46,5 @@ export async function deleteBookmark(mediaId: string, authToken: string) {
       [mediaId]: FieldValue.delete(),
     });
 
-  revalidateTag("getMedia");
+  revalidateTag("getUserBookmarks");
 }
