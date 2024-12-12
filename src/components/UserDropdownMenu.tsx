@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 
 export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
   const auth = useAuth();
@@ -22,7 +23,7 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
     document.addEventListener("click", handleClick, false);
 
     return () => document.removeEventListener("click", handleClick, false);
-  }, []);
+  }, [onClose]);
 
   return (
     <motion.div
@@ -44,15 +45,16 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
           </UserDropdownMenuItem>
         )}
         <UserDropdownMenuItem>
-          <Link href={`/logout`}>Logout</Link>
-          {/* <button
+          <button
             onClick={async () => {
               await auth?.logout();
+              onClose?.();
+              toast.success("Successfully logged out.");
               router.refresh();
             }}
           >
             Logout
-          </button> */}
+          </button>
         </UserDropdownMenuItem>
       </ul>
     </motion.div>

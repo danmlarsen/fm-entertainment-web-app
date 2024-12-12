@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useAuth } from "@/context/auth";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import UserDropdownMenu from "./UserDropdownMenu";
@@ -10,7 +9,6 @@ import Avatar, { AvatarFallback } from "@/ui/Avatar";
 
 export default function UserButton() {
   const auth = useAuth();
-  const router = useRouter();
 
   const [showDropdown, setShowDropdown] = useState(false);
 

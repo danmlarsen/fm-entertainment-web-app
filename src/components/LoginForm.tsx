@@ -15,12 +15,11 @@ import AuthCard, {
 import Button from "@/ui/Button";
 import InputField from "@/ui/InputField";
 import { useAuth } from "@/context/auth";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-export default function LoginForm() {
+export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const auth = useAuth();
-  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -37,11 +36,12 @@ export default function LoginForm() {
     try {
       await auth?.loginWithEmail(data.email, data.password);
       toast.success("Successfully logged in. Redirecting to dashboard.");
-      router.refresh();
+      onSuccess?.();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       // console.log({ e });
       const errorMessage =
-        e.code === "auth/invalid-credential"
+        e?.code === "auth/invalid-credential"
           ? "Invalid email and/or password"
           : "An error occurred";
       toast.error(errorMessage);
@@ -69,7 +69,7 @@ export default function LoginForm() {
           </AuthCardBody>
           <AuthCardFooter>
             <Button>Login to your account</Button>
-            <ContinueWithGoogleButton />
+            <ContinueWithGoogleButton onSuccess={onSuccess} />
             <p className="space-x-3 text-center">
               <span>Dont have an account?</span>
               <Link className="text-primary-500" href="/signup">

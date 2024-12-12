@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,9 +78,9 @@ export default function SignupForm() {
             <Button type="submit">Create an account</Button>
             <p className="space-x-3 text-center">
               <span>Already have an account?</span>
-              <Link className="text-primary-500" href="/login">
+              <a className="text-primary-500" href="/login">
                 Login
-              </Link>
+              </a>
             </p>
           </AuthCardFooter>
         </AuthCard>

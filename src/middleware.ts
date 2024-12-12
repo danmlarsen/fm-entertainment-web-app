@@ -13,7 +13,10 @@ export async function middleware(request: NextRequest) {
   if (
     !token &&
     (request.nextUrl.pathname.startsWith("/login") ||
-      request.nextUrl.pathname.startsWith("/signup"))
+      request.nextUrl.pathname.startsWith("/signup") ||
+      request.nextUrl.pathname.startsWith("/dashboard") ||
+      request.nextUrl.pathname.startsWith("/movies") ||
+      request.nextUrl.pathname.startsWith("/shows"))
   ) {
     return NextResponse.next();
   }
@@ -31,7 +34,6 @@ export async function middleware(request: NextRequest) {
   }
 
   const decodedToken = decodeJwt(token);
-
   if (decodedToken.exp && (decodedToken.exp - 300) * 1000 < Date.now()) {
     return NextResponse.redirect(
       new URL(
@@ -50,9 +52,9 @@ export const config = {
     "/login",
     "/signup",
     "/logout",
-    // "/dashboard",
-    // "/movies",
-    // "/shows",
+    "/dashboard",
+    "/movies",
+    "/shows",
     "/bookmarked",
   ],
 };

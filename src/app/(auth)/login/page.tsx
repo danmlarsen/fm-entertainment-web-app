@@ -1,5 +1,16 @@
-import LoginForm from "@/app/(auth)/login/LoginForm";
+"use client";
+
+import LoginForm from "@/components/LoginForm";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  return <LoginForm />;
+  const router = useRouter();
+
+  return (
+    <LoginForm
+      onSuccess={() => {
+        router.refresh();
+      }}
+    />
+  );
 }

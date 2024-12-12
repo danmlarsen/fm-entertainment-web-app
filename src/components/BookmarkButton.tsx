@@ -5,6 +5,7 @@ import { useAuth } from "@/context/auth";
 import { useOptimistic, useTransition } from "react";
 import IconBookmarkFull from "@/ui/IconBookmarkFull";
 import IconBookmarkEmpty from "@/ui/IconBookmarkEmpty";
+import { useRouter } from "next/navigation";
 
 interface AppProps extends React.ComponentPropsWithoutRef<"button"> {
   mediaId: string;
@@ -17,6 +18,7 @@ export default function BookmarkButton({
   ...props
 }: AppProps) {
   const auth = useAuth();
+  const router = useRouter();
 
   const [, startTransition] = useTransition();
   const [optimisticIsBookmarked, addOptimistic] = useOptimistic(
@@ -29,6 +31,7 @@ export default function BookmarkButton({
 
     const tokenResult = await auth?.currentUser?.getIdTokenResult();
     if (!tokenResult) {
+      router.push("/login");
       return;
     }
 

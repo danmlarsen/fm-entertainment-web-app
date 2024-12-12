@@ -1,6 +1,6 @@
 export default function AuthCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container mx-auto max-w-[400px] space-y-10 rounded-lg bg-secondary-700 p-6">
+    <div className="mx-auto w-full max-w-[400px] space-y-10 rounded-lg bg-secondary-700 p-6">
       {children}
     </div>
   );
