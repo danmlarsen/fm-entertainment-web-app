@@ -14,7 +14,7 @@ export default async function TrendingMediaCarouselItem({
   return (
     <li className="group relative h-full w-[240px] overflow-hidden rounded-lg md:w-[470px]">
       <Image
-        className="object-cover transition duration-300 group-hover:scale-110"
+        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
         src={thumbnail}
         alt={title}
         fill

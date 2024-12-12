@@ -8,6 +8,7 @@ import IconNavTvSeries from "@/ui/IconNavTvSeries";
 import IconNavBookmark from "@/ui/IconNavBookmark";
 
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/auth";
 
 const links = [
   {
@@ -34,6 +35,7 @@ const links = [
 
 export default function Navigation() {
   const pathname = usePathname();
+  const auth = useAuth();
 
   return (
     <nav className="flex gap-6 lg:flex-col">

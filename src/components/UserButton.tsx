@@ -16,28 +16,32 @@ export default function UserButton() {
 
   return (
     <div className="relative flex">
-      <button onClick={() => setShowDropdown((prev) => !prev)}>
-        <Avatar>
-          {!!auth?.currentUser?.photoURL && (
-            <Image
-              className="h-full w-full"
-              src={auth.currentUser.photoURL}
-              alt={`${auth.currentUser.displayName} avatar`}
-              width={40}
-              height={40}
-            />
-          )}
-          <AvatarFallback>
-            {(auth?.currentUser?.displayName ||
-              auth?.currentUser?.email)?.[0].toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
-      </button>
-      <AnimatePresence mode="wait">
-        {!!showDropdown && (
-          <UserDropdownMenu onClose={() => setShowDropdown(false)} />
-        )}
-      </AnimatePresence>
+      {!!auth?.currentUser && (
+        <>
+          <button onClick={() => setShowDropdown((prev) => !prev)}>
+            <Avatar>
+              {!!auth?.currentUser?.photoURL && (
+                <Image
+                  className="h-full w-full"
+                  src={auth.currentUser.photoURL}
+                  alt={`${auth.currentUser.displayName} avatar`}
+                  width={40}
+                  height={40}
+                />
+              )}
+              <AvatarFallback>
+                {(auth?.currentUser?.displayName ||
+                  auth?.currentUser?.email)?.[0].toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </button>
+          <AnimatePresence mode="wait">
+            {!!showDropdown && (
+              <UserDropdownMenu onClose={() => setShowDropdown(false)} />
+            )}
+          </AnimatePresence>
+        </>
+      )}
     </div>
   );
 }

@@ -50,9 +50,9 @@ export const config = {
     "/login",
     "/signup",
     "/logout",
-    "/dashboard",
-    "/movies",
-    "/shows",
+    // "/dashboard",
+    // "/movies",
+    // "/shows",
     "/bookmarked",
   ],
 };
