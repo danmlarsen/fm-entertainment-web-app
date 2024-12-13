@@ -13,7 +13,7 @@ export default function UserButton() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <div className="relative flex">
+    <div className="relative flex size-6 md:size-8 lg:size-10">
       {!!auth?.currentUser && (
         <>
           <button onClick={() => setShowDropdown((prev) => !prev)}>

@@ -59,12 +59,14 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
               placeholder="Email address"
               {...register("email")}
               error={errors.email?.message ? errors.email.message : ""}
+              autoComplete="email"
             />
             <InputField
               type="password"
               placeholder="Password"
               {...register("password")}
               error={errors.password?.message ? errors.password.message : ""}
+              autoComplete="current-password"
             />
           </AuthCardBody>
           <AuthCardFooter>
