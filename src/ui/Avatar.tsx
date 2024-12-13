@@ -1,3 +1,4 @@
+import { Children, isValidElement } from "react";
 import { twMerge } from "tailwind-merge";
 
 export default function Avatar({
@@ -5,9 +6,16 @@ export default function Avatar({
   className,
   ...props
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }) {
+  const validChildren = Children.toArray(children).filter(
+    (child) => isValidElement(child) && child.type !== AvatarFallback,
+  );
+  const fallbackChild = Children.toArray(children).find(
+    (child) => isValidElement(child) && child.type === AvatarFallback,
+  );
+
   return (
     <span
       className={twMerge(
@@ -16,7 +24,8 @@ export default function Avatar({
       )}
       {...props}
     >
-      {children}
+      {validChildren.length === 0 && !!fallbackChild && fallbackChild}
+      {validChildren.length > 0 && validChildren}
     </span>
   );
 }
