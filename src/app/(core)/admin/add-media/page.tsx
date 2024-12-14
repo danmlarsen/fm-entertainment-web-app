@@ -1,10 +1,21 @@
 import SectionTitle from "@/ui/SectionTitle";
 import OMdbSearch from "./OMdbSearch";
+import Breadcrumbs from "@/ui/Breadcrumbs";
 
 export default function AddMedia() {
   return (
     <div className="space-y-6">
-      <div>Dashboard / Add Media</div>
+      <Breadcrumbs
+        items={[
+          {
+            href: "/admin",
+            label: "Dashboard",
+          },
+          {
+            label: "Add Media",
+          },
+        ]}
+      />
       <SectionTitle>Admin Dashboard</SectionTitle>
       <div>
         <OMdbSearch />

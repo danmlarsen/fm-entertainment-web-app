@@ -20,7 +20,7 @@ export default async function AdminMediaTable() {
           const { id, title, thumbnail, year, category } = media;
           return (
             <tr key={id} className="divide-y divide-secondary-500">
-              <td className="w-20">
+              <td className="h-24 w-20">
                 <Image
                   className="h-full w-full object-cover"
                   src={thumbnail}

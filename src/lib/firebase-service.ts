@@ -38,7 +38,10 @@ export async function getMedia(options?: GetMediaOptions) {
   const DEFAULT_MEDIA_ITEM_LIMIT = 100;
   const limit = options?.limit || DEFAULT_MEDIA_ITEM_LIMIT;
 
-  const mediaSnapshot = await query.limit(limit).get();
+  const mediaSnapshot = await query
+    .limit(limit)
+    .orderBy("isTrending", "desc")
+    .get();
 
   return mediaSnapshot.docs.map(
     (doc) =>
