@@ -41,7 +41,9 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
       <ul>
         {!!auth?.customClaims?.admin && (
           <UserDropdownMenuItem>
-            <Link href={`/admin`}>Admin dashboard</Link>
+            <Link href={`/admin`} onClick={onClose}>
+              Admin dashboard
+            </Link>
           </UserDropdownMenuItem>
         )}
         <UserDropdownMenuItem>

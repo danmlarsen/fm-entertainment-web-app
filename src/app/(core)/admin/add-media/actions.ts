@@ -14,7 +14,7 @@ export type OmdbSearchElement = {
   Poster: string;
 };
 
-export async function fetchMediaByTitle(
+export async function fetchOmdbByTitle(
   title: string,
 ): Promise<OmdbSearchResult> {
   try {
@@ -22,7 +22,6 @@ export async function fetchMediaByTitle(
       `https://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_KEY}`,
     );
     const json = await res.json();
-
     return json;
   } catch (e: unknown) {
     console.error(e);

@@ -16,7 +16,7 @@ export default function AddMedia() {
           },
         ]}
       />
-      <SectionTitle>Admin Dashboard</SectionTitle>
+      <SectionTitle>Add Media</SectionTitle>
       <div>
         <OMdbSearch />
       </div>

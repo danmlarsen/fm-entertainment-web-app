@@ -9,9 +9,9 @@ import Table, {
   TableRow,
 } from "@/ui/Table";
 
-export default async function AdminMediaTable() {
-  const allMedia = await getMedia({
-    filters: { isTrending: false },
+export default async function AdminTrendingMediaTable() {
+  const trendingMedia = await getMedia({
+    filters: { isTrending: true },
   });
 
   return (
@@ -25,7 +25,7 @@ export default async function AdminMediaTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {allMedia.map((media) => {
+        {trendingMedia.map((media) => {
           const { id, title, thumbnail, year, category } = media;
           return (
             <TableRow key={id} className="divide-y divide-secondary-500">

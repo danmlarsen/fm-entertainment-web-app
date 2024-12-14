@@ -2,6 +2,7 @@ import SectionTitle from "@/ui/SectionTitle";
 import AdminMediaTable from "./AdminMediaTable";
 import Link from "next/link";
 import Breadcrumbs from "@/ui/Breadcrumbs";
+import AdminTrendingMediaTable from "./AdminTrendingMediaTable";
 
 export default function Admin() {
   return (
@@ -20,7 +21,14 @@ export default function Admin() {
       >
         Add Movie/Show
       </Link>
-      <AdminMediaTable />
+      <div className="space-y-4">
+        <h2 className="text-2xl">Trending</h2>
+        <AdminTrendingMediaTable />
+      </div>
+      <div className="space-y-4">
+        <h2 className="text-2xl">Recommended</h2>
+        <AdminMediaTable />
+      </div>
     </div>
   );
 }

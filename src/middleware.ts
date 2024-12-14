@@ -43,6 +43,10 @@ export async function middleware(request: NextRequest) {
     );
   }
 
+  if (!decodedToken.admin && request.nextUrl.pathname.startsWith("/admin")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
   return NextResponse.next();
 }
 
@@ -56,5 +60,7 @@ export const config = {
     "/movies",
     "/shows",
     "/bookmarked",
+    "/admin",
+    "/admin/:path*",
   ],
 };
