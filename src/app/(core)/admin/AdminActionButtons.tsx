@@ -13,7 +13,7 @@ export default function AdminActionButtons({ data }: { data: MediaType }) {
 
   const { id, isTrending } = data;
   return (
-    <>
+    <div className="flex items-center justify-center gap-2">
       {!isTrending && (
         <Button
           onClick={async () => {
@@ -52,6 +52,6 @@ export default function AdminActionButtons({ data }: { data: MediaType }) {
       >
         <FaTrash />
       </Button>
-    </>
+    </div>
   );
 }

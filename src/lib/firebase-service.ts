@@ -12,6 +12,10 @@ type GetMediaOptions = {
   filters?: {
     isTrending?: boolean;
   };
+  orderBy?: {
+    field: "isTrending";
+    direction: "asc" | "desc";
+  };
   limit?: number;
 };
 
@@ -24,7 +28,11 @@ export const getCachedMedia = unstable_cache(
 export async function getMedia(options?: GetMediaOptions) {
   let query = firestore.collection("media") as Query;
 
-  const { category } = options || {};
+  const { category, orderBy } = options || {};
+  const { field, direction } = orderBy || {
+    field: "isTrending",
+    direction: "desc",
+  };
   const { isTrending } = options?.filters || {};
 
   if (category !== null && category !== undefined) {
@@ -35,13 +43,14 @@ export async function getMedia(options?: GetMediaOptions) {
     query = query.where("isTrending", "==", isTrending);
   }
 
+  if (orderBy !== null && orderBy !== undefined) {
+    query = query.orderBy(field, direction);
+  }
+
   const DEFAULT_MEDIA_ITEM_LIMIT = 100;
   const limit = options?.limit || DEFAULT_MEDIA_ITEM_LIMIT;
 
-  const mediaSnapshot = await query
-    .limit(limit)
-    .orderBy("isTrending", "desc")
-    .get();
+  const mediaSnapshot = await query.limit(limit).get();
 
   return mediaSnapshot.docs.map(
     (doc) =>

@@ -3,7 +3,9 @@ import Image from "next/image";
 import AdminActionButtons from "./AdminActionButtons";
 
 export default async function AdminMediaTable() {
-  const allMedia = await getMedia();
+  const allMedia = await getMedia({
+    orderBy: { field: "isTrending", direction: "desc" },
+  });
 
   return (
     <table className="w-full text-left">
@@ -33,7 +35,7 @@ export default async function AdminMediaTable() {
                 {title} ({year})
               </td>
               <td>{category}</td>
-              <td className="flex items-center justify-center gap-1">
+              <td>
                 <AdminActionButtons data={media} />
               </td>
             </tr>
