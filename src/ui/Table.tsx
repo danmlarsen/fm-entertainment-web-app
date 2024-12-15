@@ -28,7 +28,16 @@ export function TableRow({
   children?: React.ReactNode;
   className?: string;
 }) {
-  return <tr className={twMerge("", className)}>{children}</tr>;
+  return (
+    <tr
+      className={twMerge(
+        "border-b border-secondary-500 transition-colors duration-300 hover:bg-secondary-700/50",
+        className,
+      )}
+    >
+      {children}
+    </tr>
+  );
 }
 export function TableHead({
   children,
@@ -46,7 +55,11 @@ export function TableBody({
   children?: React.ReactNode;
   className?: string;
 }) {
-  return <tbody className={twMerge("", className)}>{children}</tbody>;
+  return (
+    <tbody className={twMerge("[&_tr:last-child]:border-0", className)}>
+      {children}
+    </tbody>
+  );
 }
 export function TableCell({
   children,
@@ -55,7 +68,7 @@ export function TableCell({
   children?: React.ReactNode;
   className?: string;
 }) {
-  return <td className={twMerge("", className)}>{children}</td>;
+  return <td className={twMerge("p-2 align-middle", className)}>{children}</td>;
 }
 export function TableFooter({
   children,

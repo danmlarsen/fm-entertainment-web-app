@@ -4,6 +4,8 @@ import SectionTitle from "@/ui/SectionTitle";
 import MediaSearch from "@/components/MediaSearch";
 import TrendingMediaCarousel from "@/components/TrendingMediaCarousel";
 import MediaSearchResult from "@/components/MediaSearchResult";
+import MediaListSkeleton from "@/components/MediaListSkeleton";
+import TrendingMediaCarouselSkeleton from "@/components/TrendingMediaCarouselSkeleton";
 
 export default async function Page({
   searchParams,
@@ -19,13 +21,13 @@ export default async function Page({
         <>
           <div className="space-y-6">
             <SectionTitle>Trending</SectionTitle>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<TrendingMediaCarouselSkeleton />}>
               <TrendingMediaCarousel />
             </Suspense>
           </div>
           <div className="space-y-6">
             <SectionTitle>Recommended for you</SectionTitle>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<MediaListSkeleton />}>
               <RecommendedMedia />
             </Suspense>
           </div>

@@ -19,7 +19,7 @@ export async function fetchOmdbByTitle(
 ): Promise<OmdbSearchResult> {
   try {
     const res = await fetch(
-      `https://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_KEY}`,
+      `https://www.omdbapi.com/?s=${title}&type=movie&apikey=${process.env.OMDB_KEY}`,
     );
     const json = await res.json();
     return json;

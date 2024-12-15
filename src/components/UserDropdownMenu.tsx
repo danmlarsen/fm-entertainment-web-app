@@ -27,10 +27,10 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="absolute right-full top-full z-50 space-y-4 rounded bg-secondary-700 p-4 text-sm shadow-lg shadow-secondary-900 lg:bottom-full lg:left-full lg:right-auto lg:top-auto"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="absolute right-full top-full z-50 min-w-32 space-y-4 overflow-hidden rounded bg-secondary-700 p-4 text-sm shadow-lg shadow-secondary-900 lg:bottom-full lg:left-full lg:right-auto lg:top-auto"
       key="Dropdown"
       ref={ref}
     >
@@ -41,13 +41,25 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
       <ul>
         {!!auth?.customClaims?.admin && (
           <UserDropdownMenuItem>
-            <Link href={`/admin`} onClick={onClose}>
+            <Link
+              className="inline-block w-full p-2 text-left"
+              href={`/admin`}
+              onClick={onClose}
+            >
               Admin dashboard
             </Link>
           </UserDropdownMenuItem>
         )}
         <UserDropdownMenuItem>
-          <button
+          <Link
+            className="inline-block w-full p-2 text-left"
+            href={`/logout`}
+            onClick={onClose}
+          >
+            Logout
+          </Link>
+          {/* <button
+            className="w-full p-2 text-left"
             onClick={async () => {
               await auth?.logout();
               onClose?.();
@@ -56,7 +68,7 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
             }}
           >
             Logout
-          </button>
+          </button> */}
         </UserDropdownMenuItem>
       </ul>
     </motion.div>

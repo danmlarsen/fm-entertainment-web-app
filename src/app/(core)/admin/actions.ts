@@ -18,11 +18,23 @@ export async function createMediaByImdbId(imdbId: string, authToken: string) {
   );
   const mediaJson = await mediaData.json();
 
+  const mediaType = mediaJson.Type;
+  if (mediaType !== "movie" && mediaType !== "series") {
+    return {
+      error: true,
+      message: "Media needs to be either a movie or series",
+    };
+  }
+
+  const lastAtIndex = mediaJson.Poster.lastIndexOf("@");
+  const posterNoParams = mediaJson.Poster.slice(0, lastAtIndex);
+  const newPoster = `${posterNoParams}@._V1_SX2000.jpg`;
+
   const data = {
     title: mediaJson.Title,
     year: mediaJson.Year,
     rating: mediaJson.Rated,
-    category: mediaJson.Type === "movie" ? "Movie" : "TV Series",
+    category: mediaType === "movie" ? "Movie" : "TV Series",
     thumbnail: mediaJson.Poster,
     isTrending: false,
   };

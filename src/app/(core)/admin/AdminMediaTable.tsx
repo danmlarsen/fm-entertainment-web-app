@@ -28,8 +28,8 @@ export default async function AdminMediaTable() {
         {allMedia.map((media) => {
           const { id, title, thumbnail, year, category } = media;
           return (
-            <TableRow key={id} className="divide-y divide-secondary-500">
-              <TableCell className="h-24 w-20">
+            <TableRow key={id}>
+              <TableCell className="h-24 w-32">
                 <Image
                   className="h-full w-full object-cover"
                   src={thumbnail}
@@ -41,8 +41,8 @@ export default async function AdminMediaTable() {
               <TableCell>
                 {title} ({year})
               </TableCell>
-              <TableCell>{category}</TableCell>
-              <TableCell>
+              <TableCell className="w-32">{category}</TableCell>
+              <TableCell className="w-32">
                 <AdminActionButtons data={media} />
               </TableCell>
             </TableRow>

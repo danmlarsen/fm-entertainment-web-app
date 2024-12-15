@@ -3,6 +3,7 @@ import SectionTitle from "@/ui/SectionTitle";
 import { Suspense } from "react";
 import ShowList from "./ShowList";
 import MediaSearchResult from "@/components/MediaSearchResult";
+import MediaListSkeleton from "@/components/MediaListSkeleton";
 
 export default async function Page({
   searchParams,
@@ -17,7 +18,7 @@ export default async function Page({
       {!searchString && (
         <div className="space-y-6">
           <SectionTitle>TV Series</SectionTitle>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<MediaListSkeleton />}>
             <ShowList />
           </Suspense>
         </div>

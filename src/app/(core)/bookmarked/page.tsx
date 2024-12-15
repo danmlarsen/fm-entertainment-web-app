@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import MediaSearchResult from "@/components/MediaSearchResult";
 import { getCachedUserBookmarks } from "@/lib/firebase-service";
 import { cookies } from "next/headers";
+import MediaListSkeleton from "@/components/MediaListSkeleton";
 
 export default async function Page({
   searchParams,
@@ -25,13 +26,13 @@ export default async function Page({
         <>
           <div className="space-y-6">
             <SectionTitle>Bookmarked Movies</SectionTitle>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<MediaListSkeleton numItems={6} />}>
               <BookmarkedMoviesList bookmarks={Object.keys(userBookmarks)} />
             </Suspense>
           </div>
           <div className="space-y-6">
             <SectionTitle>Bookmarked TV Series</SectionTitle>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<MediaListSkeleton numItems={6} />}>
               <BookmarkedShowsList bookmarks={Object.keys(userBookmarks)} />
             </Suspense>
           </div>

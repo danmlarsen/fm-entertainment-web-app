@@ -26,7 +26,11 @@ export default function RootLayout({
         className={`${outfitFont.className} bg-secondary-900 font-light text-white antialiased`}
       >
         <AuthContextProvider>{children}</AuthContextProvider>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            duration: 2000,
+          }}
+        />
       </body>
     </html>
   );

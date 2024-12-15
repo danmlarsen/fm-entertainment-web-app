@@ -3,7 +3,7 @@ import { Auth, getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAbIgp4HEdmuQWZp2ySdu6xg0kTd9oAmjU",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_KEY,
   authDomain: "dan-entertainment-web-app.firebaseapp.com",
   projectId: "dan-entertainment-web-app",
   storageBucket: "dan-entertainment-web-app.firebasestorage.app",

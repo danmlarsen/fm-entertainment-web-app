@@ -6,6 +6,24 @@ import Image from "next/image";
 import { createMediaByImdbId } from "../actions";
 import { useAuth } from "@/context/auth";
 import InputField from "@/ui/InputField";
+import Table, {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/ui/Table";
+import Button from "@/ui/Button";
+import { FaPlus } from "react-icons/fa6";
+
+function isValidURL(url: string) {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
 export default function OMdbSearch() {
   const auth = useAuth();
@@ -24,8 +42,6 @@ export default function OMdbSearch() {
           setIsLoading(true);
 
           const omdbData = await fetchOmdbByTitle(searchString);
-
-          await new Promise((resolve) => setTimeout(resolve, 3000));
 
           const searchResults =
             omdbData.Response === "True" ? omdbData.Search : [];
@@ -63,32 +79,75 @@ export default function OMdbSearch() {
         <h3 className="text-2xl opacity-50">Found no results</h3>
       )}
       {!isLoading && mediaResults.length > 0 && (
-        <ul className="space-y-4">
-          {mediaResults.map((media) => (
-            <li key={media.imdbID} className="flex gap-2">
-              <div
-                className="relative h-40 w-32"
-                onClick={async () => {
-                  const tokenResult =
-                    await auth?.currentUser?.getIdTokenResult();
-                  const authToken = tokenResult?.token;
-                  if (!authToken) return;
-                  createMediaByImdbId(media.imdbID, authToken);
-                }}
-              >
-                <Image
-                  className="object-cover"
-                  src={media.Poster}
-                  alt={media.Title}
-                  fill
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                {media.Title} ({media.Year})
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead />
+              <TableHead>Title</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead />
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {mediaResults.map((media) => {
+              return (
+                <TableRow key={media.imdbID}>
+                  <TableCell className="h-24 w-32">
+                    {isValidURL(media.Poster) && (
+                      <Image
+                        className="h-full w-full object-cover"
+                        src={media.Poster}
+                        width={560}
+                        height={348}
+                        alt={media.Title}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {media.Title} ({media.Year})
+                  </TableCell>
+                  <TableCell className="w-32">{media.Type}</TableCell>
+                  <TableCell className="w-32">
+                    <Button
+                      onClick={async () => {
+                        const tokenResult =
+                          await auth?.currentUser?.getIdTokenResult();
+                        const authToken = tokenResult?.token;
+                        if (!authToken) return;
+                        createMediaByImdbId(media.imdbID, authToken);
+                      }}
+                    >
+                      <FaPlus />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+
+        // <ul className="space-y-4">
+        //   {mediaResults.map((media) => (
+        //     <li key={media.imdbID} className="flex gap-2">
+        //       <div
+        //         className="relative h-40 w-32"
+
+        //       >
+        //         {isValidURL(media.Poster) && (
+        //           <Image
+        //             className="object-cover"
+        //             src={media.Poster}
+        //             alt={media.Title}
+        //             fill
+        //           />
+        //         )}
+        //       </div>
+        //       <div className="flex items-center justify-center">
+        //         {media.Title} ({media.Year})
+        //       </div>
+        //     </li>
+        //   ))}
+        // </ul>
       )}
     </div>
   );
