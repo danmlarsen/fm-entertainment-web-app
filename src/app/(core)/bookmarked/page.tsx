@@ -20,7 +20,7 @@ export default async function Page({
   const userBookmarks = await getCachedUserBookmarks(token);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-10">
       <MediaSearch placeholder="Search for bookmarked shows" />
       {!searchString && (
         <>

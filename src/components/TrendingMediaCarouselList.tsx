@@ -17,7 +17,7 @@ export default function TrendingMediaCarouselList({
       <motion.ul
         drag="x"
         dragConstraints={constraintsRef}
-        className="absolute flex h-full items-center gap-4"
+        className="absolute flex h-full items-center gap-4 md:gap-10"
       >
         {children}
       </motion.ul>

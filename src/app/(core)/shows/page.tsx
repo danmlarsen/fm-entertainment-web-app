@@ -13,7 +13,7 @@ export default async function Page({
   const { search: searchString } = await searchParams;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-10">
       <MediaSearch placeholder="Search for TV Series" />
       {!searchString && (
         <div className="space-y-6">

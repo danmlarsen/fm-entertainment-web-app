@@ -5,7 +5,7 @@ import { auth, firestore } from "@/firebase/server";
 import { Query } from "firebase-admin/firestore";
 import { unstable_cache } from "next/cache";
 
-const REVALIDATE_SECONDS = 10;
+const REVALIDATE_SECONDS = 3600;
 
 type GetMediaOptions = {
   category?: "Movie" | "TV Series";
