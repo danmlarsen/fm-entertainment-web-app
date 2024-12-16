@@ -28,7 +28,8 @@ export default function Logout() {
       router.replace("/");
     }
     logout();
-  }, [auth, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AuthCard>
