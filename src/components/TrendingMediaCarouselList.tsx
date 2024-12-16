@@ -11,7 +11,7 @@ export default function TrendingMediaCarouselList({
   const constraintsRef = useRef(null);
   return (
     <div
-      className="relative min-h-[140px] cursor-move overflow-x-hidden md:min-h-[230px]"
+      className="relative min-h-[8.75rem] cursor-move overflow-x-hidden md:min-h-[14.375rem]"
       ref={constraintsRef}
     >
       <motion.ul

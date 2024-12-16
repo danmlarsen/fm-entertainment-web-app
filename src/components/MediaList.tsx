@@ -9,7 +9,7 @@ export default async function MediaList({ data }: { data: MediaType[] }) {
   const userBookmarks = await getCachedUserBookmarks(token);
 
   return (
-    <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[15px] sm:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] md:gap-[30px] lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] lg:gap-10">
+    <ul className="grid grid-cols-[repeat(auto-fill,minmax(9.375rem,1fr))] gap-4 sm:grid-cols-[repeat(auto-fill,minmax(11.25rem,1fr))] md:grid-cols-[repeat(auto-fill,minmax(13.75rem,1fr))] md:gap-8 lg:grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] lg:gap-10">
       {data.map((media) => (
         <MediaListItem
           key={media.title}

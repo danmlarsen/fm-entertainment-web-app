@@ -10,7 +10,7 @@ export default function LoginModal() {
 
   return (
     <Dialog
-      className="w-full max-w-[400px]"
+      className="w-full max-w-[25rem]"
       open
       onOpenChange={() => {
         router.back();

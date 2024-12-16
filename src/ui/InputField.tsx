@@ -1,5 +1,3 @@
-import { FieldError } from "react-hook-form";
-
 interface AppProps extends React.ComponentPropsWithoutRef<"input"> {
   name: string;
   error: string;
@@ -8,7 +6,7 @@ interface AppProps extends React.ComponentPropsWithoutRef<"input"> {
 export default function InputField({ name, error, ...props }: AppProps) {
   return (
     <label
-      className={`relative flex cursor-pointer border-b px-4 pb-[18px] has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 ${!!error ? "border-b-primary-500" : "border-b-secondary-500 has-[:focus]:border-b-white"}`}
+      className={`relative flex cursor-pointer border-b px-4 pb-4 has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 ${!!error ? "border-b-primary-500" : "border-b-secondary-500 has-[:focus]:border-b-white"}`}
       htmlFor={name}
     >
       <input

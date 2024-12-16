@@ -2,15 +2,11 @@
 
 import { useAuth } from "@/context/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
-import toast from "react-hot-toast";
 
 export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
   const auth = useAuth();
-  const router = useRouter();
-
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -27,9 +23,9 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="absolute right-full top-full z-50 min-w-32 space-y-4 overflow-hidden rounded bg-secondary-700 p-4 text-sm shadow-lg shadow-secondary-900 lg:bottom-full lg:left-full lg:right-auto lg:top-auto"
       key="Dropdown"
       ref={ref}

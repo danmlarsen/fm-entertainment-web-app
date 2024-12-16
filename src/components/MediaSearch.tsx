@@ -24,7 +24,7 @@ export default function MediaSearch({ ...props }) {
   return (
     <form action="" onSubmit={handleSearch}>
       <div className="flex gap-4">
-        <button>
+        <button type="submit" aria-label="Search button">
           <Image src={IconSearch} alt="Search icon" />
         </button>
         <label

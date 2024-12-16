@@ -23,6 +23,7 @@ export default function Avatar({
         className,
       )}
       {...props}
+      aria-hidden
     >
       {validChildren.length === 0 && !!fallbackChild && fallbackChild}
       {validChildren.length > 0 && validChildren}
@@ -45,6 +46,7 @@ export function AvatarFallback({
         className,
       )}
       {...props}
+      aria-hidden
     >
       {children}
     </span>

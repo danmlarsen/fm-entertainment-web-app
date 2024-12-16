@@ -125,29 +125,6 @@ export default function OMdbSearch() {
             })}
           </TableBody>
         </Table>
-
-        // <ul className="space-y-4">
-        //   {mediaResults.map((media) => (
-        //     <li key={media.imdbID} className="flex gap-2">
-        //       <div
-        //         className="relative h-40 w-32"
-
-        //       >
-        //         {isValidURL(media.Poster) && (
-        //           <Image
-        //             className="object-cover"
-        //             src={media.Poster}
-        //             alt={media.Title}
-        //             fill
-        //           />
-        //         )}
-        //       </div>
-        //       <div className="flex items-center justify-center">
-        //         {media.Title} ({media.Year})
-        //       </div>
-        //     </li>
-        //   ))}
-        // </ul>
       )}
     </div>
   );

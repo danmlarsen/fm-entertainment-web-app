@@ -5,6 +5,7 @@ import AuthCard, { AuthCardBody, AuthCardTitle } from "@/ui/AuthCard";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { FaSpinner } from "react-icons/fa6";
 
 export default function Logout() {
   const auth = useAuth();
@@ -32,7 +33,9 @@ export default function Logout() {
   return (
     <AuthCard>
       <AuthCardTitle>Please wait...</AuthCardTitle>
-      <AuthCardBody>Logging out</AuthCardBody>
+      <AuthCardBody>
+        <FaSpinner className="animate-spin" />
+      </AuthCardBody>
     </AuthCard>
   );
 }

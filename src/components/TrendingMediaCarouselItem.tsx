@@ -12,7 +12,7 @@ export default async function TrendingMediaCarouselItem({
   const { id, title, thumbnail, isBookmarked } = data;
 
   return (
-    <li className="group relative h-full w-[240px] overflow-hidden rounded-lg md:w-[470px]">
+    <li className="group relative h-full w-[15rem] overflow-hidden rounded-lg md:w-[29.375rem]">
       <Image
         className="h-full w-full object-cover object-top transition duration-300 group-hover:scale-105"
         src={thumbnail}

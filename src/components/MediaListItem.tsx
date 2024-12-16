@@ -17,7 +17,6 @@ export default async function MediaListItem({ data }: { data: MediaType }) {
           alt={title}
           width={560}
           height={348}
-          sizes="(max-width: 375px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw"
         />
         <PlayMediaOverlay data={data} />
         <BookmarkButton mediaId={id} isBookmarked={isBookmarked} />

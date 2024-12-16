@@ -16,7 +16,12 @@ export default function UserButton() {
     <div className="relative flex size-6 md:size-8 lg:size-10">
       {!!auth?.currentUser && (
         <>
-          <button onClick={() => setShowDropdown((prev) => !prev)}>
+          <button
+            onClick={() => setShowDropdown((prev) => !prev)}
+            aria-label="User menu button"
+            aria-haspopup="menu"
+            aria-expanded={showDropdown}
+          >
             <Avatar>
               {!!auth?.currentUser?.photoURL && (
                 <Image
