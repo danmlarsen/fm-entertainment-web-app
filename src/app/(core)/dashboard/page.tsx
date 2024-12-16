@@ -7,6 +7,8 @@ import MediaSearchResult from "@/components/MediaSearchResult";
 import MediaListSkeleton from "@/components/MediaListSkeleton";
 import TrendingMediaCarouselSkeleton from "@/components/TrendingMediaCarouselSkeleton";
 
+export const dynamic = "force-static";
+
 export default async function Page({
   searchParams,
 }: {

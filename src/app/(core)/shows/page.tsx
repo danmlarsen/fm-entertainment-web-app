@@ -5,6 +5,8 @@ import ShowList from "./ShowList";
 import MediaSearchResult from "@/components/MediaSearchResult";
 import MediaListSkeleton from "@/components/MediaListSkeleton";
 
+export const dynamic = "force-static";
+
 export default async function Page({
   searchParams,
 }: {
