@@ -34,7 +34,7 @@ export default async function MediaSearchResult({
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-10">
       <SectionTitle>
         Found {filteredData.length} results for '{searchString}'
       </SectionTitle>
