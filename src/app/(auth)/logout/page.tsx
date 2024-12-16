@@ -28,7 +28,7 @@ export default function Logout() {
       router.replace("/");
     }
     logout();
-  }, []);
+  }, [auth, router]);
 
   return (
     <AuthCard>
