@@ -17,7 +17,7 @@ import InputField from "@/ui/InputField";
 import { useAuth } from "@/context/auth";
 import toast from "react-hot-toast";
 
-export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
+export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const auth = useAuth();
 
   const {
@@ -37,7 +37,6 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
       await auth?.loginWithEmail(data.email, data.password);
       toast.success("Successfully logged in. Redirecting to dashboard.");
       onSuccess?.();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       // console.log({ e });
       const errorMessage =
@@ -71,7 +70,11 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
           </AuthCardBody>
           <AuthCardFooter>
             <Button>Login to your account</Button>
-            <ContinueWithGoogleButton onSuccess={onSuccess} />
+            <ContinueWithGoogleButton
+              onSuccess={() => {
+                onSuccess?.();
+              }}
+            />
             <p className="space-x-3 text-center">
               <span>Dont have an account?</span>
               <Link className="text-primary-500" href="/signup">
