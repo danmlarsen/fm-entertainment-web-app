@@ -3,6 +3,7 @@
 import { createPortal } from "react-dom";
 import { IoClose } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
+import { motion } from "motion/react";
 
 export default function Dialog({
   children,
@@ -16,16 +17,18 @@ export default function Dialog({
   className?: string;
   onOpenChange?: () => void;
 }) {
-  function handleClose() {
+  async function handleClose() {
     onOpenChange?.();
   }
 
   return createPortal(
     <>
       <DialogOverlay onClickedOverlay={handleClose} />
-      <dialog
+      <motion.dialog
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         className={twMerge(
-          "fixed left-1/2 top-1/2 z-50 mx-0 -translate-x-1/2 -translate-y-1/2 bg-transparent text-white",
+          "fixed left-1/2 top-1/2 z-50 mx-0 -translate-x-1/2 -translate-y-1/2 bg-transparent text-white duration-300",
           className,
         )}
         open={open}
@@ -38,7 +41,7 @@ export default function Dialog({
         >
           <IoClose />
         </button>
-      </dialog>
+      </motion.dialog>
     </>,
     document.body,
   );
@@ -50,9 +53,11 @@ export function DialogOverlay({
   onClickedOverlay: () => void;
 }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className="fixed inset-0 z-50 bg-black/75"
       onClick={onClickedOverlay}
-    ></div>
+    ></motion.div>
   );
 }
