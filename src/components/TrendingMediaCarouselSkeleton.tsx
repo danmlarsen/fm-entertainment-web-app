@@ -5,7 +5,7 @@ export default function TrendingMediaCarouselSkeleton() {
         {Array.from({ length: 5 }).map((_, i) => (
           <li
             key={i}
-            className="relative h-full w-[15rem] animate-pulse overflow-hidden rounded-lg bg-secondary-500 md:w-[29.375rem]"
+            className="relative h-full w-[15rem] animate-pulse overflow-hidden rounded-lg bg-secondary-500/15 md:w-[29.375rem]"
           />
         ))}
       </ul>
