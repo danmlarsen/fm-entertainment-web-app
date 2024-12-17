@@ -15,6 +15,7 @@ import Table, {
 } from "@/ui/Table";
 import Button from "@/ui/Button";
 import { FaPlus } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 function isValidURL(url: string) {
   try {
@@ -114,7 +115,18 @@ export default function OMdbSearch() {
                           await auth?.currentUser?.getIdTokenResult();
                         const authToken = tokenResult?.token;
                         if (!authToken) return;
-                        createMediaByImdbId(media.imdbID, authToken);
+                        try {
+                          await createMediaByImdbId(media.imdbID, authToken);
+                          toast.success(`Successfully added ${media.Title}`);
+
+                          setMediaResults((mediaResults) =>
+                            mediaResults.filter(
+                              (prevMedia) => prevMedia.imdbID !== media.imdbID,
+                            ),
+                          );
+                        } catch (e: any) {
+                          toast.error(`Error adding ${media.Title}`);
+                        }
                       }}
                     >
                       <FaPlus />
