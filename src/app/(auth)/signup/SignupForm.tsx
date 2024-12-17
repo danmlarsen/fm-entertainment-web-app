@@ -15,6 +15,7 @@ import InputField from "@/ui/InputField";
 import { registerUser } from "./actions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -35,13 +36,11 @@ export default function SignupForm() {
     const response = await registerUser(data);
 
     if (!!response?.error) {
-      // console.log(response.message);
       toast.error(response.message);
       return;
     }
 
     toast.success("Your account was created successfully!");
-
     router.push("/login");
   }
 
@@ -78,9 +77,9 @@ export default function SignupForm() {
             <Button type="submit">Create an account</Button>
             <p className="space-x-3 text-center">
               <span>Already have an account?</span>
-              <a className="text-primary-500" href="/login">
+              <Link className="text-primary-500" href="/login">
                 Login
-              </a>
+              </Link>
             </p>
           </AuthCardFooter>
         </AuthCard>

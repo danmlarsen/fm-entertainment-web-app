@@ -44,6 +44,7 @@ export default function Dialog({
             <button
               className="absolute right-0 top-0 m-4 opacity-50 transition duration-200 hover:opacity-100"
               onClick={handleClose}
+              type="button"
             >
               <IoClose />
             </button>

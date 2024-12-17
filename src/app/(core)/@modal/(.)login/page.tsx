@@ -19,7 +19,9 @@ export default function LoginModal() {
       <LoginForm
         onSuccess={async () => {
           await loginSuccess();
-          router.back();
+          // router.replace("/dashboard");
+          // Dirty fix since router.push/replace simply wont work
+          window.location.href = "/dashboard";
         }}
       />
     </Dialog>

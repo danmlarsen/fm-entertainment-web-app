@@ -69,7 +69,7 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
             />
           </AuthCardBody>
           <AuthCardFooter>
-            <Button>Login to your account</Button>
+            <Button type="submit">Login to your account</Button>
             <ContinueWithGoogleButton
               onSuccess={() => {
                 onSuccess?.();

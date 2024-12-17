@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <LoginForm
       onSuccess={() => {
-        router.refresh();
+        router.replace("/dashboard");
       }}
     />
   );
