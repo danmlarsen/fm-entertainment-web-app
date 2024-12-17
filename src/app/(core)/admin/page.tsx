@@ -6,7 +6,7 @@ import AdminTrendingMediaTable from "./AdminTrendingMediaTable";
 
 export default function Admin() {
   return (
-    <div className="space-y-6">
+    <div className="max-w-5xl space-y-6">
       <Breadcrumbs
         items={[
           {

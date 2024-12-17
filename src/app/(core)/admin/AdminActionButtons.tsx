@@ -21,6 +21,7 @@ export default function AdminActionButtons({ data }: { data: MediaType }) {
             const tokenResult = await auth?.currentUser?.getIdTokenResult();
             const authToken = tokenResult?.token;
             if (!authToken) return;
+
             try {
               await setMediaIsTrending(id, true, authToken);
               toast.success(`Moved ${title} to trending`);
