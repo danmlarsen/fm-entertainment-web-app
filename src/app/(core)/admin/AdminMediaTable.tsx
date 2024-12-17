@@ -1,4 +1,4 @@
-import { getMedia } from "@/lib/firebase-service";
+import { getCachedMedia } from "@/lib/firebase-service";
 import Image from "next/image";
 import AdminActionButtons from "./AdminActionButtons";
 import Table, {
@@ -10,7 +10,7 @@ import Table, {
 } from "@/ui/Table";
 
 export default async function AdminMediaTable() {
-  const allMedia = await getMedia({
+  const allMedia = await getCachedMedia({
     filters: { isTrending: false },
   });
 

@@ -35,7 +35,7 @@ export async function createMediaByImdbId(imdbId: string, authToken: string) {
     year: mediaJson.Year,
     rating: mediaJson.Rated,
     category: mediaType === "movie" ? "Movie" : "TV Series",
-    thumbnail: mediaJson.Poster,
+    thumbnail: newPoster,
     isTrending: false,
   };
 
