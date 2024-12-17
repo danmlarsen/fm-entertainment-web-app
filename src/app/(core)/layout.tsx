@@ -6,10 +6,10 @@ export default function Layout({
   modal,
 }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
   return (
-    <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-rows-[auto_1fr] md:py-6 lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+    <div className="mx-auto grid min-h-screen max-w-screen-2xl pb-6 pt-14 md:pt-24 lg:pt-16">
       <Header />
 
-      <main className="p-4 py-6 md:p-6">
+      <main className="p-4 py-6 md:p-6 lg:pl-40">
         <TransitionRouterProvider>{children}</TransitionRouterProvider>
       </main>
       {modal}

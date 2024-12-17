@@ -6,5 +6,8 @@ export default async function RecommendedMedia() {
     filters: { isTrending: false },
   });
 
+  if (recommendedData.length === 0)
+    return <p className="text-white/50">No recommended shows found.</p>;
+
   return <MediaList data={recommendedData} />;
 }

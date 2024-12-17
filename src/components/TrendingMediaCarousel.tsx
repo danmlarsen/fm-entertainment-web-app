@@ -8,6 +8,9 @@ export default async function TrendingMediaCarousel() {
     filters: { isTrending: true },
   });
 
+  if (trendingData.length === 0)
+    return <p className="text-white/50">No trending shows found.</p>;
+
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;
   const userBookmarks = await getCachedUserBookmarks(token);

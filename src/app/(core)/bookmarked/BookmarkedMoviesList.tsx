@@ -14,5 +14,8 @@ export default async function BookmarkedMoviesList({
     bookmarks.includes(movie.id),
   );
 
+  if (bookmarkedMovies.length === 0)
+    return <p className="text-white/50">No bookmarked movies found.</p>;
+
   return <MediaList data={bookmarkedMovies} />;
 }

@@ -12,5 +12,8 @@ export default async function BookmarkedShowsList({
 
   const bookmarkedShows = shows.filter((show) => bookmarks.includes(show.id));
 
+  if (bookmarkedShows.length === 0)
+    return <p className="text-white/50">No bookmarked shows found.</p>;
+
   return <MediaList data={bookmarkedShows} />;
 }
