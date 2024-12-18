@@ -34,15 +34,19 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     },
   });
 
+  function handleLoginSuccess() {
+    if (onSuccess === undefined) {
+      router.replace("/dashboard");
+    } else {
+      onSuccess();
+    }
+  }
+
   async function submit(data: z.infer<typeof loginUserSchema>) {
     try {
       await auth?.loginWithEmail(data.email, data.password);
       toast.success("Successfully logged in. Redirecting to dashboard.");
-      if (onSuccess === undefined) {
-        router.replace("/dashboard");
-      } else {
-        onSuccess();
-      }
+      handleLoginSuccess();
     } catch (e: any) {
       // console.log({ e });
       const errorMessage =
@@ -80,7 +84,7 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
             </Button>
             <ContinueWithGoogleButton
               onSuccess={() => {
-                onSuccess?.();
+                handleLoginSuccess();
               }}
             />
             <p className="space-x-3 text-center">

@@ -16,7 +16,7 @@ export default function ContinueWithGoogleButton({
       onClick={async () => {
         try {
           await auth?.loginWithGoogle();
-          onSuccess?.();
+          onSuccess();
         } catch (e) {}
       }}
       className="border border-white bg-transparent"
