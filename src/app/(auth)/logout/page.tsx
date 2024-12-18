@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa6";
+import { logoutSuccess } from "./actions";
 
 export default function Logout() {
   const auth = useAuth();
@@ -18,6 +19,8 @@ export default function Logout() {
           auth?.logout(),
           new Promise((resolve) => setTimeout(resolve, 500)),
         ]);
+
+        await logoutSuccess();
 
         toast.success("Successfully logged out.", { id: "logout" });
       } catch (e) {
