@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import IconSearch from "@/assets/icon-search.svg";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function MediaSearch({ ...props }) {
@@ -24,7 +24,11 @@ export default function MediaSearch({ ...props }) {
   return (
     <form action="" onSubmit={handleSearch}>
       <div className="flex gap-4">
-        <button type="submit" aria-label="Search button">
+        <button
+          type="submit"
+          aria-label="Search button"
+          className="transition duration-300 focus:outline-none focus-visible:ring focus-visible:ring-primary-500"
+        >
           <Image src={IconSearch} alt="Search icon" />
         </button>
         <label

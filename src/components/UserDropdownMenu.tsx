@@ -38,7 +38,7 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
         {!!auth?.customClaims?.admin && (
           <UserDropdownMenuItem>
             <Link
-              className="inline-block w-full p-2 text-left"
+              className="inline-block w-full p-2 text-left focus:outline-none"
               href={`/admin`}
               onClick={onClose}
             >
@@ -48,7 +48,7 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
         )}
         <UserDropdownMenuItem>
           <Link
-            className="inline-block w-full p-2 text-left"
+            className="inline-block w-full p-2 text-left focus:outline-none"
             href={`/logout`}
             onClick={onClose}
           >
@@ -73,7 +73,7 @@ export default function UserDropdownMenu({ onClose }: { onClose: () => void }) {
 
 function UserDropdownMenuItem({ children }: { children: React.ReactNode }) {
   return (
-    <li className="rounded-lg py-1 transition duration-300 hover:bg-secondary-500/5">
+    <li className="rounded-lg py-1 transition duration-300 hover:bg-secondary-500/5 has-[:focus-visible]:ring has-[:focus-visible]:ring-primary-500">
       {children}
     </li>
   );

@@ -17,12 +17,13 @@ export default function UserButton() {
       {!!auth?.currentUser && (
         <>
           <button
+            className="group focus-visible:outline-none"
             onClick={() => setShowDropdown((prev) => !prev)}
             aria-label="User menu button"
             aria-haspopup="menu"
             aria-expanded={showDropdown}
           >
-            <Avatar>
+            <Avatar className="transition duration-300 group-focus-visible:border-primary-500 group-focus-visible:ring-2 group-focus-visible:ring-primary-500">
               {!!auth?.currentUser?.photoURL && (
                 <Image
                   className="h-full w-full"

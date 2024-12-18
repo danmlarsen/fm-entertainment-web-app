@@ -44,7 +44,7 @@ export default function BookmarkButton({
 
   return (
     <button
-      className={`absolute right-2 top-2 grid size-8 place-items-center rounded-full bg-secondary-900/50 transition duration-300 hover:bg-white hover:text-black`}
+      className={`absolute right-2 top-2 grid size-8 place-items-center rounded-full bg-secondary-900/50 transition duration-300 hover:bg-white hover:text-black focus:outline-none focus-visible:ring focus-visible:ring-primary-500`}
       onClick={handleBookmarkClick}
       {...props}
       aria-label="Bookmark"

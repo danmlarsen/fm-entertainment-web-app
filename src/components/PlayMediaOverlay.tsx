@@ -10,7 +10,7 @@ export default function PlayMediaOverlay({ data }: { data: MediaType }) {
   return (
     <div className="absolute inset-0 grid place-items-center bg-black/50 text-lg font-medium opacity-0 transition duration-300 hover:opacity-100 has-[:focus-visible]:opacity-100">
       <button
-        className="flex h-12 w-28 items-center gap-4 rounded-full bg-white/25 p-2"
+        className="flex h-12 w-28 items-center gap-4 rounded-full bg-white/25 p-2 transition duration-300 focus:outline-none focus-visible:ring focus-visible:ring-primary-500"
         onClick={() => {
           toast(
             `Started playing ${data.category.toLowerCase()}: ${data.title}`,

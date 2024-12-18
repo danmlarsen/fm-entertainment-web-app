@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfitFont.className} bg-secondary-900 font-light text-white antialiased`}
+        className={`${outfitFont.className} bg-secondary-900 font-light text-white antialiased caret-primary-500`}
       >
         <AuthContextProvider>{children}</AuthContextProvider>
         <Toaster

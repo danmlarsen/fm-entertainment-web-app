@@ -74,7 +74,9 @@ export default function SignupForm() {
             />
           </AuthCardBody>
           <AuthCardFooter>
-            <Button type="submit">Create an account</Button>
+            <Button className="focus-visible:ring-white" type="submit">
+              Create an account
+            </Button>
             <p className="space-x-3 text-center">
               <span>Already have an account?</span>
               <Link className="text-primary-500" href="/login">
