@@ -58,7 +58,7 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(submit)} noValidate>
+    <form action="#" onSubmit={handleSubmit(submit)} noValidate>
       <fieldset disabled={isSubmitting}>
         <AuthCard>
           <AuthCardTitle>Login</AuthCardTitle>

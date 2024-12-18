@@ -44,7 +44,7 @@ export default function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(submit)} noValidate>
+    <form action="#" onSubmit={handleSubmit(submit)} noValidate>
       <fieldset disabled={isSubmitting}>
         <AuthCard>
           <AuthCardTitle>Sign Up</AuthCardTitle>

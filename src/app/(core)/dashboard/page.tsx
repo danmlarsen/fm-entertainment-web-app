@@ -31,7 +31,7 @@ export default async function Page({
             </Suspense>
           </div>
           <div className="space-y-6">
-            <SectionTitle>Recommended for you</SectionTitle>
+            <SectionTitle as="h2">Recommended for you</SectionTitle>
             <Suspense fallback={<MediaListSkeleton />}>
               <RecommendedMedia />
             </Suspense>

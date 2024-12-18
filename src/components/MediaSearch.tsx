@@ -22,7 +22,7 @@ export default function MediaSearch({ ...props }) {
   }
 
   return (
-    <form action="" onSubmit={handleSearch}>
+    <form action="#" onSubmit={handleSearch}>
       <div className="flex gap-4">
         <button
           type="submit"
