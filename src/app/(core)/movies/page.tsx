@@ -4,6 +4,11 @@ import MovieList from "./MovieList";
 import { Suspense } from "react";
 import MediaSearchResult from "@/components/MediaSearchResult";
 import MediaListSkeleton from "@/components/MediaListSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Movies",
+};
 
 export default async function Page({
   searchParams,

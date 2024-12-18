@@ -11,8 +11,12 @@ const outfitFont = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Entertainment Web App",
-  description: "Entertainment Web App",
+  title: {
+    template: "%s / Entertainment Web App",
+    default: "Entertainment Web App",
+  },
+  description:
+    "Disclaimer: This web app is just a demo or concept. There is no streaming content here.",
 };
 
 export default function RootLayout({

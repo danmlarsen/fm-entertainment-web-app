@@ -19,10 +19,12 @@ export default function Logout() {
           new Promise((resolve) => setTimeout(resolve, 500)),
         ]);
 
-        toast.success("Successfully logged out.");
+        toast.success("Successfully logged out.", { id: "logout" });
       } catch (e) {
         console.error(e);
-        toast.error("An unknown error occurred while logging out.");
+        toast.error("An unknown error occurred while logging out.", {
+          id: "logout",
+        });
       }
 
       router.replace("/");

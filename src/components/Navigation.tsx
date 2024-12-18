@@ -36,7 +36,7 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-6 lg:flex-col">
+    <nav className="flex gap-6 md:gap-8 lg:flex-col lg:gap-10">
       {links.map((link) => (
         <Link
           className={`transition duration-300 hover:text-primary-500 ${pathname === link.href ? "text-white" : "text-secondary-500"}`}

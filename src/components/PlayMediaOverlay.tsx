@@ -14,6 +14,7 @@ export default function PlayMediaOverlay({ data }: { data: MediaType }) {
         onClick={() => {
           toast(
             `Started playing ${data.category.toLowerCase()}: ${data.title}`,
+            { id: "play-media" },
           );
         }}
       >

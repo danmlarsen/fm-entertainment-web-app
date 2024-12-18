@@ -7,6 +7,11 @@ import MediaSearchResult from "@/components/MediaSearchResult";
 import { getCachedUserBookmarks } from "@/lib/firebase-service";
 import { cookies } from "next/headers";
 import MediaListSkeleton from "@/components/MediaListSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bookmarks",
+};
 
 export default async function Page({
   searchParams,

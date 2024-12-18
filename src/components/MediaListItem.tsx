@@ -10,7 +10,7 @@ export default async function MediaListItem({ data }: { data: MediaType }) {
 
   return (
     <li className="space-y-2">
-      <div className="group relative h-28 cursor-pointer overflow-hidden rounded-lg md:h-36 lg:h-44">
+      <div className="group relative h-28 overflow-hidden rounded-lg md:h-36 lg:h-44">
         <Image
           className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
           src={thumbnail}

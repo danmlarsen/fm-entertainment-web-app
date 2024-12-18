@@ -19,7 +19,7 @@ export default function Avatar({
   return (
     <span
       className={twMerge(
-        "relative flex aspect-square size-6 shrink-0 overflow-hidden rounded-full border border-white md:size-8 lg:size-10",
+        "relative flex aspect-square size-6 shrink-0 overflow-hidden rounded-full border border-white text-sm md:size-8 md:text-base lg:size-10",
         className,
       )}
       {...props}

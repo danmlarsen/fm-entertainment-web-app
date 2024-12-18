@@ -6,6 +6,11 @@ import TrendingMediaCarousel from "@/components/TrendingMediaCarousel";
 import MediaSearchResult from "@/components/MediaSearchResult";
 import MediaListSkeleton from "@/components/MediaListSkeleton";
 import TrendingMediaCarouselSkeleton from "@/components/TrendingMediaCarouselSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default async function Page({
   searchParams,
