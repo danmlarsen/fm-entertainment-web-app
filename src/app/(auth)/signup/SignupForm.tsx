@@ -15,7 +15,6 @@ import InputField from "@/ui/InputField";
 import { registerUser } from "./actions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Link from "next/link";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -55,12 +54,14 @@ export default function SignupForm() {
               placeholder="Email address"
               {...register("email")}
               error={errors.email?.message ? errors.email.message : ""}
+              autoComplete="email"
             />
             <InputField
               type="password"
               placeholder="Password"
               {...register("password")}
               error={errors.password?.message ? errors.password.message : ""}
+              autoComplete="new-password"
             />
             <InputField
               type="password"
@@ -71,6 +72,7 @@ export default function SignupForm() {
                   ? errors.passwordConfirm.message
                   : ""
               }
+              autoComplete="new-password"
             />
           </AuthCardBody>
           <AuthCardFooter>
@@ -79,9 +81,9 @@ export default function SignupForm() {
             </Button>
             <p className="space-x-3 text-center">
               <span>Already have an account?</span>
-              <Link className="text-primary-500" href="/login">
+              <a className="text-primary-500" href="/login">
                 Login
-              </Link>
+              </a>
             </p>
           </AuthCardFooter>
         </AuthCard>

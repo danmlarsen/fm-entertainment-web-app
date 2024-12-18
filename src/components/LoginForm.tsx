@@ -16,9 +16,11 @@ import Button from "@/ui/Button";
 import InputField from "@/ui/InputField";
 import { useAuth } from "@/context/auth";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
   const auth = useAuth();
+  const router = useRouter();
 
   const {
     register,
@@ -36,7 +38,11 @@ export default function LoginForm({ onSuccess }: { onSuccess?: () => void }) {
     try {
       await auth?.loginWithEmail(data.email, data.password);
       toast.success("Successfully logged in. Redirecting to dashboard.");
-      onSuccess?.();
+      if (onSuccess === undefined) {
+        router.replace("/dashboard");
+      } else {
+        onSuccess();
+      }
     } catch (e: any) {
       // console.log({ e });
       const errorMessage =

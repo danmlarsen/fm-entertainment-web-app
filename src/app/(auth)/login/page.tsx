@@ -1,16 +1,10 @@
-"use client";
-
 import LoginForm from "@/components/LoginForm";
-import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 export default function Page() {
-  const router = useRouter();
-
-  return (
-    <LoginForm
-      onSuccess={() => {
-        router.replace("/dashboard");
-      }}
-    />
-  );
+  return <LoginForm />;
 }
