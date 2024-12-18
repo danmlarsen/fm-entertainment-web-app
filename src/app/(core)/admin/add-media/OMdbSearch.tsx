@@ -30,6 +30,7 @@ export default function OMdbSearch() {
   const auth = useAuth();
 
   const [searchString, setSearchString] = useState("");
+  const [searchType, setSearchType] = useState("movie");
   const [isLoading, setIsLoading] = useState(false);
   const [mediaResults, setMediaResults] = useState<OmdbSearchElement[]>([]);
 
@@ -38,29 +39,55 @@ export default function OMdbSearch() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          if (searchString.length <= 3) return;
+
+          const tokenResult = await auth?.currentUser?.getIdTokenResult();
+          const authToken = tokenResult?.token;
+          if (!authToken) return;
 
           setIsLoading(true);
 
-          const omdbData = await fetchOmdbByTitle(searchString);
+          const query = {
+            title: searchString,
+            type: searchType ?? "movie",
+          };
 
-          const searchResults =
-            omdbData.Response === "True" ? omdbData.Search : [];
-          setMediaResults([...searchResults]);
+          try {
+            const omdbData = await fetchOmdbByTitle(query, authToken);
+
+            const searchResults =
+              omdbData.Response === "True" ? omdbData.Search : [];
+            setMediaResults([...searchResults]);
+          } catch (e: any) {
+            console.error({ e });
+            toast.error("Error fetching Omdb");
+          }
+
           setIsLoading(false);
         }}
       >
-        <div>
-          <InputField
-            type="text"
-            name="searchString"
-            id="searchString"
-            placeholder="Search for title"
-            error=""
-            value={searchString}
-            onChange={(e) => setSearchString(e.target.value)}
-          />
-        </div>
+        <fieldset className="flex">
+          <div className="grow">
+            <InputField
+              type="text"
+              name="searchString"
+              id="searchString"
+              placeholder="Search for title"
+              error=""
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
+            />
+          </div>
+          <div>
+            <select
+              className="text-black"
+              value={searchType}
+              onChange={(e) => setSearchType(e.target.value)}
+            >
+              <option value="movie">Movie</option>
+              <option value="series">TV Series</option>
+            </select>
+          </div>
+        </fieldset>
       </form>
       {isLoading && (
         <div className="flex flex-col gap-4">

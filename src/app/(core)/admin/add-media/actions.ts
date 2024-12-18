@@ -1,5 +1,7 @@
 "use server";
 
+import { auth } from "@/firebase/server";
+
 export type OmdbSearchResult = {
   Search: OmdbSearchElement[];
   totalResults?: string;
@@ -15,11 +17,24 @@ export type OmdbSearchElement = {
 };
 
 export async function fetchOmdbByTitle(
-  title: string,
+  {
+    title,
+    type,
+  }: {
+    title: string;
+    type: string;
+  },
+  authToken: string,
 ): Promise<OmdbSearchResult> {
+  const verifiedToken = await auth.verifyIdToken(authToken);
+
+  if (!verifiedToken || !verifiedToken.admin) {
+    throw new Error("Unauthorized");
+  }
+
   try {
     const res = await fetch(
-      `https://www.omdbapi.com/?s=${title}&type=movie&apikey=${process.env.OMDB_KEY}`,
+      `https://www.omdbapi.com/?s=${title}&type=${type}&apikey=${process.env.OMDB_KEY}`,
     );
     const json = await res.json();
     return json;
