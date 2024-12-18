@@ -15,11 +15,7 @@ export default function Logout() {
   useEffect(() => {
     async function logout() {
       try {
-        await Promise.all([
-          auth?.logout(),
-          new Promise((resolve) => setTimeout(resolve, 500)),
-        ]);
-
+        await auth?.logout();
         await logoutSuccess();
 
         toast.success("Successfully logged out.", { id: "logout" });
