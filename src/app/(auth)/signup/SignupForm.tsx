@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function SignupForm() {
-  const router = useRouter();
+  // const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -50,6 +50,7 @@ export default function SignupForm() {
       <fieldset disabled={isSubmitting}>
         <AuthCard>
           <AuthCardTitle>Sign Up</AuthCardTitle>
+
           <AuthCardBody>
             <InputField
               type="email"
@@ -78,6 +79,13 @@ export default function SignupForm() {
             />
           </AuthCardBody>
           <AuthCardFooter>
+            {!!errors.password?.message && (
+              <p className="text-xs text-primary-500">
+                Password must contain at least 6 characters, at least 1
+                uppercase letter, 1 lowercase letter, 1 number, and 1 special
+                character
+              </p>
+            )}
             <Button className="focus-visible:ring-white" type="submit">
               Create an account
             </Button>
