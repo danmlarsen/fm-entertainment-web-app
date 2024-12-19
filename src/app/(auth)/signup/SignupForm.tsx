@@ -40,7 +40,9 @@ export default function SignupForm() {
     }
 
     toast.success("Your account was created successfully!");
-    router.push("/login");
+    // Pushes to a 404 since login is also a modal. Is there a way to ignore the route intercept when using router?
+    // router.push("/login");
+    window.location.href = "/login";
   }
 
   return (
