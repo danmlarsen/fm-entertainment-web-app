@@ -81,8 +81,8 @@ export default function SignupForm() {
           <AuthCardFooter>
             {!!errors.password?.message && (
               <p className="text-sm text-primary-500">
-                Password must contain at least 6 characters, with at least 1
-                digit
+                Password must contain at least 6 characters, including at least
+                1 digit
               </p>
             )}
             <Button className="focus-visible:ring-white" type="submit">
