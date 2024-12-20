@@ -13,7 +13,7 @@ import AuthCard, {
 import Button from "@/ui/Button";
 import InputField from "@/ui/InputField";
 import { registerUser } from "./actions";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function SignupForm() {
@@ -80,10 +80,9 @@ export default function SignupForm() {
           </AuthCardBody>
           <AuthCardFooter>
             {!!errors.password?.message && (
-              <p className="text-xs text-primary-500">
-                Password must contain at least 6 characters, at least 1
-                uppercase letter, 1 lowercase letter, 1 number, and 1 special
-                character
+              <p className="text-sm text-primary-500">
+                Password must contain at least 6 characters, with at least 1
+                digit
               </p>
             )}
             <Button className="focus-visible:ring-white" type="submit">
